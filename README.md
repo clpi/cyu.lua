@@ -1,194 +1,74 @@
-# 🏙 Tokyo Night
+# cayu.nvim
 
-A dark and light Neovim theme written in Lua ported from the Visual Studio Code [TokyoNight](https://github.com/enkia/tokyo-night-vscode-theme) theme. Includes extra themes for Kitty, Alacritty, iTerm and Fish.
+## About
 
-## Storm
+- `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
+- If you would like to add this theme to your Vim/Neovim configuration, bearing in mind that it won't be maintained like other popular themes (instead more as a personal project), here's how to do so.
 
-![image](https://user-images.githubusercontent.com/292349/115295095-3a9e5080-a10e-11eb-9aed-6054488c46ce.png)
 
-## Night
+## Installation
+- Installation and configuration are near identical to tokyonight at the moment, but not all flavors or color palette variations are implemented yet. Still, installation instructions remain the same.
 
-![image](https://user-images.githubusercontent.com/292349/115295327-7afdce80-a10e-11eb-89b3-2591262bf95a.png)
+- If you're using [packer.nvim](https://github.com/wbthomason/packer.nvim), just copy this code into wherever you keep your packer startup function:
 
-## Day
+```lua
+use "clpi/cayu.nvim"
+```
 
-![image](https://user-images.githubusercontent.com/292349/115996270-78c6c480-a593-11eb-8ed0-7d1400b058f5.png)
 
-## ✨ Features
-
-- supports the latest Neovim 5.0 features like TreeSitter and LSP
-- minimal inactive statusline
-- vim terminal colors
-- darker background for sidebar-like windows
-- color configs for [Kitty](https://sw.kovidgoyal.net/kitty/conf.html?highlight=include), [Alacritty](https://github.com/alacritty/alacritty) and [Fish Shell](https://fishshell.com/)
-- **lualine** theme
-
-### Plugin Support
-
-- [TreeSitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [LSP Diagnostics](https://neovim.io/doc/user/lsp.html)
-- [LSP Trouble](https://github.com/folke/lsp-trouble.nvim)
-- [LSP Saga](https://github.com/glepnir/lspsaga.nvim)
-- [Git Signs](https://github.com/lewis6991/gitsigns.nvim)
-- [Git Gutter](https://github.com/airblade/vim-gitgutter)
-- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-- [NvimTree](https://github.com/kyazdani42/nvim-tree.lua)
-- [WhichKey](https://github.com/liuchengxu/vim-which-key)
-- [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [Dashboard](https://github.com/glepnir/dashboard-nvim)
-- [BufferLine](https://github.com/akinsho/nvim-bufferline.lua)
-- [Lualine](https://github.com/hoob3rt/lualine.nvim)
-- [Lightline](https://github.com/itchyny/lightline.vim)
-- [Neogit](https://github.com/TimUntersberger/neogit)
-- [vim-sneak](https://github.com/justinmk/vim-sneak)
-- [Fern](https://github.com/lambdalisue/fern.vim)
-- [Barbar](https://github.com/romgrk/barbar.nvim)
-
-## ⚡️ Requirements
-
-- Neovim >= 0.5.0
-
-## 📦 Installation
-
-Install the theme with your preferred package manager:
-
-[vim-plug](https://github.com/junegunn/vim-plug)
-
+- Or in VimL (with [plug.vim](https://github.com/junegunn/vim-plug)):
 ```vim
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'clpi/cayu.nvim'
 ```
 
-[packer](https://github.com/wbthomason/packer.nvim)
+- _**Note**: haven't tried using the theme in Vim itself yet, only Neovim 0.7)_
 
+
+## Configuration
+- Configuration is borrowed from tokyonight.nvim (as an artefact of using its repo as a base template), however no different color variations have been made, so, for the time being, configuration options have been made available to the end user to provide them an illusory feeling of power and control.
+- This can be achieved through the Lua API (in Neovim 0.5+):_
 ```lua
-use 'folke/tokyonight.nvim'
-```
-
-## 🚀 Usage
-
-Enable the colorscheme:
-
-```vim
-" Vim Script
-colorscheme tokyonight
-```
-
-```lua
--- Lua
-vim.cmd[[colorscheme tokyonight]]
-```
-
-To enable the `TokyoNight` theme for `Lualine`, simply specify it in your lualine settings:
-
-```lua
-require('lualine').setup {
-  options = {
-    -- ... your lualine config
-    theme = 'tokyonight'
-    -- ... your lualine config
-  }
+use  { 
+    "clpi/cayu.nvim",
+    config = function()
+        vim.g.cayu_style = "night" -- Only palette variant available right now
+        vim.g.cayu_italic_functions = true
+        vim.g.cayu_sidebars = {}  -- Specify window types to shade differentially
+    end
 }
+-- ... (after packer startup) ...
+vim.cmd[[ colorscheme cayu ]]
+    
 ```
 
-To enable the `tokyonight` colorscheme for `Lightline`:
 
+- In VimL:
 ```vim
-" Vim Script
-let g:lightline = {'colorscheme': 'tokyonight'}
+Plug "clpi/cayu.nvim"
+
+" ... after plugin spec ...
+
+let g:cayu_style = "night"
+let g:cayu_style_functions = true
+let g:cayu_sidebars = {}
+
+colorscheme cayu
 ```
 
-## ⚙️ Configuration
 
-> ❗️ configuration needs to be set **BEFORE** loading the color scheme with `colorscheme tokyonight`
+## Plugin Support
 
-The theme comes in three styles, `storm`, a darker variant `night` and `day`.
-
-The **day** style will be used if:
-
-- `vim.g.tokyonight_style == "day"`
-- or `vim.o.background == "light"`
-
-| Option                              | Default   | Description                                                                                                                                                     |
-| ----------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tokyonight_style                    | `"storm"` | The theme comes in three styles, `storm`, a darker variant `night` and `day`.                                                                                   |
-| tokyonight_terminal_colors          | `true`    | Configure the colors used when opening a `:terminal` in Neovim                                                                                                  |
-| tokyonight_italic_comments          | `true`    | Make comments italic                                                                                                                                            |
-| tokyonight_italic_keywords          | `true`    | Make keywords italic                                                                                                                                            |
-| tokyonight_italic_functions         | `false`   | Make functions italic                                                                                                                                           |
-| tokyonight_italic_variables         | `false`   | Make variables and identifiers italic                                                                                                                           |
-| tokyonight_transparent              | `false`   | Enable this to disable setting the background color                                                                                                             |
-| tokyonight_hide_inactive_statusline | `false`   | Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**. |
-| tokyonight_sidebars                 | `{}`      | Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`                                                      |
-| tokyonight_transparent_sidebar      | `false`   | Sidebar like windows like `NvimTree` get a transparent background                                                                                               |
-| tokyonight_dark_sidebar             | `true`    | Sidebar like windows like `NvimTree` get a darker background                                                                                                    |
-| tokyonight_dark_float               | `true`    | Float windows like the lsp diagnostics windows get a darker background.                                                                                         |
-| tokyonight_colors                   | `{}`      | You can override specific color groups to use other groups or a hex color                                                                                       |
-| tokyonight_day_brightness           | `0.3`     | Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors                                                  |
-| tokyonight_lualine_bold             | `false`   | When `true`, section headers in the lualine theme will be bold                                                                                                  |
-
-```lua
--- Example config in Lua
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-
--- Load the colorscheme
-vim.cmd[[colorscheme tokyonight]]
-```
-
-```vim
-" Example config in VimScript
-let g:tokyonight_style = "night"
-let g:tokyonight_italic_functions = 1
-let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-
-" Change the "hint" color to the "orange" color, and make the "error" color bright red
-let g:tokyonight_colors = {
-  \ 'hint': 'orange',
-  \ 'error': '#ff0000'
-\ }
-
-" Load the colorscheme
-colorscheme tokyonight
-```
-
-### Making `undercurls` work properly in **Tmux**
-
-To have undercurls show up and in color, add the following to your **Tmux** config file:
-
-```sh
-# Undercurl
-set -g default-terminal "${TERM}"
-set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-```
-
-## 🍭 Extras
-
-Extra color configs for **Kitty**, **Alacritty**, **Fish**, **WezTerm** and **iTerm** can be found in [extras](extras/). To use them, refer to their respective documentation.
-
-![image](https://user-images.githubusercontent.com/292349/115395546-d8d6f880-a198-11eb-98fb-a1194787701d.png)
-
-You can easily use the color palette for other plugins inside your Neovim config:
-
-```lua
-local colors = require("tokyonight.colors").setup({}) -- pass in any of the config options as explained above
-local utils = requires("tokyonight.util")
-
-aplugin.background = colors.bg_dark
-aplugin.my_error = util.brighten(colors.red1, 0.3)
-```
-
-## 🔥 Contributing
-
-Pull requests are welcome. For the `extras`, we use a simple template system that can be used to generate themes for the different styles.
-
-How to add a new extra template:
-
-1. create a file like `lua/tokyonight/extra/cool-app.lua`
-2. add the name and output file extension to the `extras` table in `lua/tokyonight/extra/init.lua`
-3. in the root directory, run `$ lua lua/tokyonight/extra/init.lua` to generate / update extra themes
-4. commit the newly created themes under `extra/`
+- Supports custom coloring of many themes, including all of those supported by tokyonight as well as several custom additions. A few listed:
+    - [nvim-treesitter]()
+    - [trouble.nvim]()
+    - [telescope.nvim]()
+    - [vimwiki]()
+    - [neogit.nvim]()
+    - [bufferline.nvim]()
+    - [copilot.vim](https://github.com/github/copilot.vim.git)
+    - [gitsigns.nvim]()
+    - [indent-blankline.nvim]()
+    - [cmp-nvim]()
+    - [fzf-lua]()
+    - [toggleterm-nvim]()
+    - ...and friends

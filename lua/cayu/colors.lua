@@ -123,47 +123,45 @@ function M.setup(config)
 
 
 
-    blue     = "#9fdaff",
-    blue1    = "#9fdaff",
-    blue2    = "#8ad0ff",
-    blue3    = "#6abfef",
+    blue1    = "#aacfff",
+    blue2    = "#9abff0",
+    blue3    = "#7fa0ea",
+    blue4    = "#6a90df",
 
-    cyan     = "#6afffa",
-    cyan1    = "#6ffffa",
-    cyan2    = "#7fffea",
-    cyan3    = "#5fffdf",
+    cyan1    = "#8feaef",
+    cyan2    = "#7fd0da",
+    cyan3    = "#5fc0cf",
 
-    teal     = "#90f0bf",
-    teal1    = "#90f0bf",
-    teal2    = "#7af0af",
+    teal1    = "#9aeaaf",
+    teal2    = "#7fd0aa",
+    teal3    = "#60c09f",
 
-    green    = "#bff0aa",
-    green1   = "#bff0aa",
-    green2   = "#afefa0",
-    green3   = "#a0ea8a",
+    green1   = "#bafa90",
+    green2   = "#aae07a",
+    green3   = "#8acf6f",
 
-    yellow   = "#ffeaaa",
-    yellow1  = "#ffeaaa",
-    yellow2  = "#fae090",
-    yellow3  = "#fad080",
+    yellow0  = "#ffda8f",
+    yellow1  = "#ffca6f",
+    yellow2  = "#f0ba5f",
+    yellow3  = "#eaaa5a",
 
-    orange   = "#ffbf8f",
-    orange1  = "#ffbf8f",
-    orange2  = "#ffaa7a",
-    orange3  = "#ff9f6f",
+    orange1  = "#ffaf6f",
+    orange2  = "#f09a5f",
+    orange3  = "#ea8f5a",
 
-    red      = "#ffa09a",
-    red1     = "#ffa09a",
-    red2     = "#ffa08a" ,
+    red1     = "#ff9a9f",
+    red2     = "#fa8a8f",
+    red3     = "#f07a6f" ,
 
-    magenta  = "#ffaff0", -- @
-    magenta1 = "#ffaff0", -- @
-    magenta2 = "#f090e0", -- @
-    magenta3 = "#ff90ef", -- @
+    magenta1 = "#fa9aca", -- @
+    magenta2 = "#fa9aca", -- @
+    magenta3 = "#f080ba", -- @
+    magenta4 = "#ea70aa", -- @
 
-    purple   = "#f0bfff",
-    purple1  = "#f0bfff",
-    purple2  = "#eaaff0",
+    purple1  = "#cfafff",
+    purple2  = "#b0a0fa",
+    purple3  = "#9f90ea",
+    purple4  = "#8f80ea",
 
     white1   = "#faf7ea",
     white2   = "#d9d7ce",
@@ -201,6 +199,45 @@ function M.setup(config)
   colors.border_highlight = colors.blue1
   colors.border = colors.black
 
+    colors.blue     = colors.blue2
+    colors.lblue    = colors.blue1
+    colors.dblue    = colors.blue3
+    colors.ddblue   = colors.blue4
+
+    colors.cyan     = colors.cyan2
+    colors.lcyan    = colors.cyan1
+    colors.dcyan    = colors.cyan3
+
+    colors.teal     = colors.teal2
+    colors.lteal     = colors.teal1
+    colors.dteal     = colors.teal3
+
+    colors.green    = colors.green2
+    colors.dgreen   = colors.green3
+    colors.lgreen   = colors.green1
+
+    colors.yellow   = colors.yellow1
+    colors.dyellow  = colors.yellow2
+    colors.ddyellow = colors.yellow3
+    colors.lyellow  = colors.yellow0
+
+    colors.orange   = colors.orange2
+    colors.dorange  = colors.orange3
+    colors.lorange  = colors.orange1
+
+    colors.red      = colors.red2
+    colors.dred     = colors.red3
+    colors.lred     = colors.red1
+
+    colors.magenta  = colors.magenta2
+    colors.dmagenta = colors.magenta3
+    colors.ddmagenta= colors.magenta4
+    colors.lmagenta = colors.magenta1
+
+    colors.purple   = colors.purple2
+    colors.lpurple  = colors.purple1
+    colors.dpurple = colors.purple3
+    colors.ddpurple = colors.purple4
   -- Popups and statusline always get a dark background
   colors.bg_popup = colors.fg_gutter
   colors.bg_statusline = colors.black

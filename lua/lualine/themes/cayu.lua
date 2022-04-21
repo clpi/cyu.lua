@@ -14,10 +14,10 @@ cayu.normal = {
 }
 
 cayu.insert = {
-  a = { bg = colors.orange, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.orange },
-  y = { bg = colors.fg_gutter, fg = colors.orange },
-  z = { bg = colors.orange, fg = colors.black },
+  a = { bg = colors.purple, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.purple },
+  y = { bg = colors.fg_gutter, fg = colors.purple },
+  z = { bg = colors.purple, fg = colors.black },
 }
 
 cayu.command = {
@@ -28,26 +28,26 @@ cayu.command = {
 }
 
 cayu.visual = {
-  a = { bg = colors.purple, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.purple },
-  y = { bg = colors.fg_gutter, fg = colors.purple },
-  z = { bg = colors.purple, fg = colors.black },
+  a = { bg = colors.yellow, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.yellow },
+  y = { bg = colors.fg_gutter, fg = colors.yellow },
+  z = { bg = colors.yellow, fg = colors.black },
 }
 
 cayu.replace = {
   a = { bg = colors.blue, fg = colors.black },
   b = { bg = colors.fg_gutter, fg = colors.blue },
   y = { bg = colors.fg_gutter, fg = colors.blue },
-  z = { bg = colors.fg_gutter, fg = colors.blue },
+  z = { bg = colors.blue, fg = colors.black },
 }
 
 cayu.inactive = {
-  a = { bg = colors.bg_statusline, fg = colors.blue },
+  a = { bg = colors.bg_statusline, fg = colors.green },
   b = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
   c = { bg = colors.bg_statusline, fg = colors.gray },
   x = { bg = colors.bg_statusline, fg = colors.gray },
   y = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
-  z = { bg = colors.bg_statusline, fg = colors.fg_gutter },
+  z = { bg = colors.bg_statusline, fg = colors.green },
 }
 
 if vim.o.background == "light" then

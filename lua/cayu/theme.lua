@@ -16,20 +16,20 @@ function M.setup(config)
   local c = theme.colors
 
   theme.base = {
-    Comment = { fg = c.comment, style = config.commentStyle }, -- any comment
-    ColorColumn = { bg = c.black }, -- used for the columns set with 'colorcolumn'
-    Conceal = { fg = c.dark5 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor = { fg = c.bg, bg = c.fg }, -- character under the cursor
-    lCursor = { fg = c.bg, bg = c.fg }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM = { fg = c.bg, bg = c.fg }, -- like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn = { bg = c.bg_highlight }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine = { bg = c.bg_highlight }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory = { fg = c.blue }, -- directory names (and other special names in listings)
-    DiffAdd = { bg = c.diff.add }, -- diff mode: Added line |diff.txt|
-    DiffChange = { bg = c.diff.change }, -- diff mode: Changed line |diff.txt|
-    DiffDelete = { bg = c.diff.delete }, -- diff mode: Deleted line |diff.txt|
-    DiffText = { bg = c.diff.text }, -- diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer = { fg = c.bg }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+    Comment = { fg = c.comment, style = config.commentStyle },
+    ColorColumn = { bg = c.black },
+    Conceal = { fg = c.dark5 },
+    Cursor = { fg = c.bg, bg = c.fg },
+    lCursor = { fg = c.bg, bg = c.fg },
+    CursorIM = { fg = c.bg, bg = c.fg },
+    CursorColumn = { bg = c.bg_highlight },
+    CursorLine = { bg = c.bg_highlight },
+    Directory = { fg = c.orange },
+    DiffAdd = { bg = c.diff.add },
+    DiffChange = { bg = c.diff.change },
+    DiffDelete = { bg = c.diff.delete },
+    DiffText = { bg = c.diff.text },
+    EndOfBuffer = { fg = c.bg },
     -- TermCursor  = { }, -- cursor in a focused terminal
     -- TermCursorNC= { }, -- cursor in an unfocused terminal
     ErrorMsg = { fg = c.error }, -- error messages on the command line
@@ -40,17 +40,17 @@ function M.setup(config)
     SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
     Substitute = { bg = c.red, fg = c.black }, -- |:substitute| replacement text highlighting
     LineNr = { fg = c.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr = { fg = c.dark5 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen = { fg = c.orange, style = "bold" }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg = { fg = c.fg_dark, style = "bold" }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea = { fg = c.fg_dark }, -- Area for messages and cmdline
+    MatchParen = { fg = c.yellow, bg=c.bg_highlight, style = "bold" },
+    CursorLineNr = { fg = c.orange1 },
+    ModeMsg = { fg = c.fg_dark, style = "bold" },
+    MsgArea = { fg = c.fg_dark },
     -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg = { fg = c.blue }, -- |more-prompt|
-    NonText = { fg = c.dark3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal = { fg = c.fg, bg = config.transparent and c.none or c.bg }, -- normal text
-    NormalNC = { fg = c.fg, bg = config.transparent and c.none or c.bg }, -- normal text in non-current windows
-    NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar }, -- normal text in non-current windows
-    NormalFloat = { fg = c.fg, bg = c.bg_float }, -- Normal text in floating windows.
+    MoreMsg = { fg = c.blue },
+    NonText = { fg = c.dark3 },
+    Normal = { fg = c.fg, bg = config.transparent and c.none or c.bg },
+    NormalNC = { fg = c.fg, bg = config.transparent and c.none or c.bg },
+    NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+    NormalFloat = { fg = c.fg, bg = c.bg_float },
     FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
     Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
     PmenuSel = { fg = c.yellow2, style = "bold"}, -- Popup menu: selected item.
@@ -100,7 +100,7 @@ function M.setup(config)
     -- Repeat        = { }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
     Operator = { fg = C.operator, }, -- "sizeof", "+", "*", etc.
-    Keyword = { fg = c.purple, style = "bold" }, -- style = config.keywordStyle }, --  any other keyword
+    Keyword = { fg = c.purple}, -- style = config.keywordStyle }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
     PreProc = { fg = c.cyan }, -- (preferred) generic Preprocessor
@@ -109,16 +109,16 @@ function M.setup(config)
     -- Macro         = { }, --    same as Define
     -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type      = { fg = c.purple1 }, -- (preferred) int, long, char, etc.
+    Type      = { fg = c.orange }, -- (preferred) int, long, char, etc.
     -- StorageClass  = { }, -- static, register, volatile, etc.
     Structure = { fg = c.yellow }, --  struct, union, enum, etc.
-    Typedef       = { fg = c.purple2 , style = "bold"}, --  A typedef
+    Typedef       = { fg = c.red }, --  A typedef
 
     Special     = { fg = c.yellow1 }, -- (preferred) any special symbol
-    SpecialChar = { fg = C.purple2, style = "italic" }, --  special character in a constant
+    SpecialChar = { fg = c.red1, style = "italic" }, --  special character in a constant
     Tag         = { fg = c.blue2 }, --    you can use CTRL-] on this
-    Delimiter     = {fg=C.operator }, --  character that needs attention
-    SpecialComment= { fg=C.yellow}, -- special things inside a comment
+    Delimiter     = {fg=c.red1 }, --  character that needs attention
+    SpecialComment= { fg=c.yellow2, style="italic"}, -- special things inside a comment
     -- Debug         = { }, --    debugging statements
 
     Underlined = { style = "underline" }, -- (preferred) text that stands out, HTML links
@@ -152,8 +152,8 @@ function M.setup(config)
     markdownH2 = { fg = c.blue, style = "bold" },
     markdownLinkText = { fg = c.blue, style = "underline" },
 
-    NvimLambda = { fg = c.magenta, style = "bold" },
-    NvimCurly = { fg = C.operator},-- style = "bold" },
+    -- NvimLambda = { fg = c.magenta, style = "bold" },
+    -- NvimCurly = { fg = C.operator},-- style = "bold" },
 
 
     debugPC = { bg = c.bg_sidebar }, -- used for highlighting the current line in terminal-debug
@@ -213,64 +213,109 @@ function M.setup(config)
     -- TSError -> Error for example, so you do not have to define these unless
     -- you explicitly want to support Treesitter's improved syntax awareness.
 
+    TSNote =              { fg = c.orange, style = "bold" };
     TSAnnotation        = { fg=c.comment};    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-    TSAttribute         = { fg=c.purple};    -- (unstable) TODO: docs
+    TSAttribute         = { fg=c.lteal, };    -- (unstable) TODO: docs
     TSBoolean         = { fg=c.purple, style = "italic" }; -- For booleans.
-    TSCharacter         = { fg=c.purple2},-- style = 'bold'};    -- For characters.
+    TSCharacter         = { fg=c.magenta};
+    TSCharacterSpecial  = { fg = c.lmagenta, style = "italic"};
     TSComment           = { fg=c.comment, style = 'italic'};    -- For comment blocks.
-    TSNote            = { fg = c.bg, bg = c.info },
     TSWarning         = { fg = c.bg, bg = c.warning },
     TSDanger          = { fg = c.bg, bg = c.error },
-    TSConstructor     = { fg = c.yellow , style = "bold"}, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-    TSConditional       = { fg=c.red2, style = "italic"};    -- For keywords related to conditionnals.
-    TSConstant          = { fg=c.purple2};    -- For constants
-    TSConstBuiltin      = { fg=c.red1};    -- For constant that are built in the language: `nil` in Lua.
-    TSConstMacro        = { fg=c.magenta1, style="italic" },-- style="bold"};    -- For constants that are defined by macros: `NULL` in C.
-    TSError           = { fg = c.error }; -- For syntax/parser errors.
-    TSException         = {fg=c.red1 };    -- For exception related keywords.
-    TSField           = { fg = c.blue1 }, -- , style="italic"}, -- For fields.
-    TSFloat           = { fg = c.purple2 }; -- For floats.
-    TSFunction        = { fg = c.yellow3 }; -- For function (calls and definitions).
-    TSFuncBuiltin     = { fg = c.orange2, style = "bold,italic" }; -- For builtin functions: `table.insert` in Lua.
-    TSFuncMacro       = { fg = c.red2, style = "bold" }; -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    TSInclude         = { fg = c.red, style = "italic,bold" }; -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    TSKeyword         = { fg = c.orange2};--, style = config.keywordStyle }, -- For keywords that on't fall in previous categories.
-    TSKeywordFunction = { fg = c.orange};--, style = config.functionStyle }, -- For keywords used to define a fuction.
-    TSLabel           = { fg = c.purple2 }, -- For labels: `label:` in C and `:label:` in Lua.
-    TSMethod            = { fg=c.orange2},-- style = "bold"};    -- For method calls and definitions.
-    TSNamespace         = { fg = c.orange}, --, style = "bold"};    -- For identifiers referring to modules and namespaces.
-    -- TSNone              = { };    -- TODO: docs
-    TSNumber            = { fg=c.purple2};    -- For all numbers
-    TSOperator        = { fg = c.red1 }, -- For any operator: `+`, but also `->` and `*` in C.
-    TSParameter       = { fg = c.orange1 }, -- For parameters of a function.
-    TSParameterReference= { fg=c.orange3, style="italic"};    -- For references to parameters of a function.
+    TSConstructor     = { fg = c.lyellow },
+    TSConditional       = { fg=c.red2, style = "italic"};
+    TSConstant          = { fg=c.purple2};
+    TSConstBuiltin      = { fg=c.magenta1, style = "italic"};
+    TSConstMacro        = { fg=c.blue2, style="italic,bold" };
+    TSDebug           = { fg = c.lcyan };
+    TSError           = { fg = c.red2 };
+    TSException         = {fg=c.red1 };
+    TSField           = { fg = c.blue };
+    TSFloat           = { fg = c.purple2 };
+    TSFuncBuiltin     = { fg = c.yellow2, style = "bold,italic" };
+    TSFunction        = { fg = c.yellow, style = "italic" };
+    TSFuncMacro       = { fg = c.magenta, style = "bold"},-- style = "" };
+    TSInclude         = { fg = c.yellow, style = "italic" };
+    TSKeyword         = { fg = c.orange2, style = "italic"};
+    TSKeywordFunction = { fg = c.dyellow, style ="bold"};
+    TSKeywordReturn = { fg = c.orange, style = "bold,italic"};
+    TSKeywordOperator = { fg = c.red}, style = "italic";
+    TSLabel           = { fg = c.purple, style = 'italic' },
+    TSEnvironment     = { fg = c.teal },
+    TSEnvironmentName = { fg = c.teal, style = "italic" },
+    TSMethod            = { fg=c.orange2, style="italic"},
+    TSNamespace         = { fg = c.purple1},
+    -- TSNone              = { };    2-- TODO: docs
+    TSNumber            = { fg=c.purple}; 
+    TSOperator        = { fg = c.red1 },
+    TSParameter       = { fg = c.dorange }, -- For parameters of a function.
+    TSParameterReference= { fg=c.dorange, style="italic"};    -- For references to parameters of a function.
     TSProperty        = { fg = c.blue3 , style="italic"}, -- Same as `TSField`.
-    TSPunctDelimiter  = { fg = c.red1 }, -- For delimiters ie: `.`
-    TSPunctBracket    = { fg = c.red2, }, -- For brackets and parens.
-    TSPunctSpecial    = { fg = c.magenta }, -- For special punctutation that does not fall in the catagories before.
+    TSPunctDelimiter  = { fg = c.red1 },
+    TSPunctBracket    = { fg = c.red2, },
+    TSPunctSpecial    = { fg = c.orange3 },
     TSRepeat            = { fg=c.orange, style="italic"};    -- For keywords related to loops.
     TSString          = { fg = c.green1, style = "italic" }; -- For strings.
     TSStringRegex     = { fg = c.teal1 }, -- For regexes.
     TSStringEscape    = { fg = c.orange1 }, -- For escape characters within a string.
+    TSStringSpecial   = { fg = c.yellow1, style = 'italic'};
     TSSymbol          = { fg = c.cyan2, style = "bold,italic" }; -- For identifiers referring to symbols or atoms.
-    TSType            = { fg = c.cyan1}, style = "italic",-- style = "italic" }; -- For types.
-    TSTypeBuiltin     = { fg = c.cyan2,style="italic" }; -- For builtin types.
-    TSVariable        = { fg = c.purple },  -- OR? c.blue3
-    TSVariableBuiltin = { fg = c.purple , style = "bold"}, -- Variable names that are defined by the languages, like `this` or `self`.
+    TSPreProc = { fg = c.teal, style = "italic"};
+    TSDefine = { fg = c.orange2, style = "bold"};
+
+    TSStorageClass = { fg = c.cyan2 };
+
+    TSType            = { fg = c.blue2,};
+    TSTypeBuiltin     = { fg = c.cyan,style="italic" };
+    TSTypeQualifier   = { fg = c.purple2, style = "italic" };
+    TSTypeDefinition  = { fg = c.blue1, style = "bold"};
+
+    TSVariable        = { fg = c.cyan }; --, style = "italic"};
+    TSVariableBuiltin = { fg = c.teal , style = "italic"}, -- Variable names that are defined by the languages, like `this` or `self`.
+     
 
     TSTag           = { fg = c.cyan2 }; -- Tags like html tag names.
+    TSTagAttribute  = { fg = c.teal, style = "italic" }; -- Tags like html tag names.
     TSTagDelimiter  = { fg = c.red }; -- Tag delimiter like `<` `>` `/`
     -- TSText              = { };    -- For strings considered text in a markup language.
-    TSTextReference = { fg = c.teal },
+    TSTextReference = { fg = c.teal, style ="italic" },
     -- TSEmphasis          = { };    -- For text to be represented with emphasis.
     -- TSUnderline         = { };    -- For text to be represented with an underline.
     -- TSStrike            = { };    -- For strikethrough text.
+
     -- TSTitle             = { };    -- Text that is part of a title.
     -- TSLiteral           = { };    -- Literal text.
     TSURI               = { fg=c.blue, style="underline"};    -- Any URI like a link or email.
+    VimwikiHeader1 = { fg = c.yellow, style = "bold" };
+    VimwikiHeader2 = { fg = c.green, style = "bold" };
+    VimwikiHeader3 = { fg = c.blue, style = "bold" };
+    VimwikiHeader4 = { fg = c.purple, style = "bold" };
+    VimwikiHeader5 = { fg = c.red, style = "bold" };
+    VimwikiHeader6 = { fg = c.orange, style = "bold" };
+    VimwikiLink =    { fg = c.blue, style = "underline"};
+    VimwikiLinkT   = { fg = c.blue, style = "underline"};
+    Vimwikipurple  = { fg = c.purple };
+    Vimwikibpurple  = { fg = c.lpurple , bg=c.none};
+    Vimwikiblue  = { fg = c.blue };
+    Vimwikibblue  = { fg = c.lblue , bg = c.none };
+    Vimwikiyellow  = { fg = c.yellow };
+    Vimwikibyellow  = { fg = c.lyellow , bg = c.none };
+    Vimwikigreen   = { fg = c.green };
+    Vimwikibgreen   = { fg = c.lgreen , bg = c.none};
+    Vimwikiorange  = { fg = c.orange};
+    Vimwikiborange  = { fg = c.lorange, bg = c.none};
+    Vimwikired     = { fg = c.red   };
+    Vimwikibred     = { fg = c.lred   , bg = c.none};
+
+    CopilotSuggestion = { fg = c.fg_gutter_light  };
+
+    IndentBlankline = { fg = c.fg_gutter, bg = c.none };
+    IndentBlanklineChar = { fg = c.fg_gutter_light, bg = c.none };
+    IndentBlanklineContextChar = { fg = c.yellow, bg = c.none , style = "bold"};
+
 
     -- Lua
-    -- luaTSProperty = { fg = c.red }, -- Same as `TSField`.
+    -- Vimwiki
 
     -- LspTrouble
     LspTroubleText = { fg = c.fg_dark },
@@ -282,6 +327,7 @@ function M.setup(config)
     illuminatedCurWord = { bg = c.fg_gutter },
 
     -- diff
+
     diffAdded = { fg = c.git.add },
     diffRemoved = { fg = c.git.delete },
     diffChanged = { fg = c.git.change },
@@ -464,25 +510,25 @@ function M.setup(config)
     CmpItemKindValue = { fg = c.teal, bg = c.none },
 
     CmpItemKindFunction = { fg = c.yellow, bg = c.none },
-    CmpItemKindMethod = { fg = c.blue, bg = c.none },
-    CmpItemKindConstructor = { fg = c.purple2, bg = c.none },
+    CmpItemKindMethod = { fg = c.yellow3, bg = c.none, style = "bold" },
+    CmpItemKindConstructor = { fg = c.orange2, bg = c.none, style = "bold" },
 
-    CmpItemKindClass = { fg = c.orange1, bg = c.none },
-    CmpItemKindInterface = { fg = c.yellow2, bg = c.none },
-    CmpItemKindStruct = { fg = c.orange2, bg = c.none },
-    CmpItemKindEvent = { fg = c.magenta, bg = c.none },
-    CmpItemKindEnum = { fg = c.purple, bg = c.none },
-    CmpItemKindUnit = { fg = c.purple, bg = c.none },
+    CmpItemKindClass = { fg = c.orange1, bg = c.none, style = "bold" },
+    CmpItemKindInterface = { fg = c.yellow2, bg = c.none, style = "bold" },
+    CmpItemKindStruct = { fg = c.orange2, bg = c.none, style = "bold" },
+    CmpItemKindEvent = { fg = c.red1, bg = c.none, style = "bold" },
+    CmpItemKindEnum = { fg = c.purple2, bg = c.none, style = "bold" },
+    CmpItemKindUnit = { fg = c.magenta1, bg = c.none, style = "bold" },
 
     CmpItemKindModule = { fg = c.orange1, bg = c.none, style = "bold" },
-    CmpItemKindText = { fg = c.green2, style = "bold" },
+    CmpItemKindText = { fg = c.green3, style = "bold" },
 
-    CmpItemKindProperty = { fg = c.blue, bg = c.none, style = "bold" },
-    CmpItemKindField = { fg = c.cyan1, bg = c.none, style = "bold" },
+    CmpItemKindProperty = { fg = c.dblue, bg = c.none, style = "bold" },
+    CmpItemKindField = { fg = c.lblue, bg = c.none, style = "bold" },
     CmpItemKindTypeParameter = { fg = c.purple1, bg = c.none , style = "bold"},
-    CmpItemKindEnumMember = { fg = c.orange, bg = c.none , style = "bold"},
+    CmpItemKindEnumMember = { fg = c.orange2, bg = c.none , style = "bold"},
     CmpItemKindOperator = { fg = c.red1, bg = c.none , style = "bold"},
-    CmpItemKindSnippet = { fg = c.teal, bg = c.none },
+    CmpItemKindSnippet = { fg = c.teal, bg = c.none, style = "bold" },
 
     SearchBoxMatch = { bg=c.bg_sel, style = "bold" },
   }
