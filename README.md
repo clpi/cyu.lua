@@ -1,5 +1,7 @@
 # cayu.nvim
 
+<img src="./res/cayu.png" alt="preview for cayu" />
+
 ## About
 
 - `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
