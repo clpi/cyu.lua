@@ -44,7 +44,7 @@ vim.cmd[[ colorscheme cayu ]]
 
 - In VimL:
 ```vim
-Plug "clpi/cayu.nvim"
+Plug 'clpi/cayu.nvim'
 
 " ... after plugin spec ...
 
@@ -71,4 +71,6 @@ colorscheme cayu
     - [cmp-nvim]()
     - [fzf-lua]()
     - [toggleterm-nvim]()
+    - [lualine]()
+    - [lightline]()
     - ...and friends
