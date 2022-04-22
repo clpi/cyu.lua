@@ -285,27 +285,92 @@ function M.setup(config)
 
     -- TSTitle             = { };    -- Text that is part of a title.
     -- TSLiteral           = { };    -- Literal text.
-    TSURI               = { fg=c.blue, style="underline"};    -- Any URI like a link or email.
+    TSURI               = { fg=c.lblue, style="italic"};    -- Any URI like a link or email.
+    VimwikiH1Folding = { fg = c.lyellow, style = "italic" };
+    VimwikiH2Folding = { fg = c.lgreen, style = "italic" };
+    VimwikiH3Folding = { fg = c.lcyan, style = "italic" };
+    VimwikiH4Folding = { fg = c.lpurple, style = "italic" };
+    VimwikiH5Folding = { fg = c.lred, style = "italic" };
+    VimwikiH6Folding = { fg = c.lorange, style = "italic" };
     VimwikiHeader1 = { fg = c.yellow, style = "bold" };
     VimwikiHeader2 = { fg = c.green, style = "bold" };
-    VimwikiHeader3 = { fg = c.blue, style = "bold" };
+    VimwikiHeader3 = { fg = c.cyan, style = "bold" };
     VimwikiHeader4 = { fg = c.purple, style = "bold" };
     VimwikiHeader5 = { fg = c.red, style = "bold" };
     VimwikiHeader6 = { fg = c.orange, style = "bold" };
-    VimwikiLink =    { fg = c.blue, style = "underline"};
-    VimwikiLinkT   = { fg = c.blue, style = "underline"};
-    Vimwikipurple  = { fg = c.purple };
+    Vimwikipurple  = { fg = c.purple, bg = c.none };
     Vimwikibpurple  = { fg = c.lpurple , bg=c.none};
-    Vimwikiblue  = { fg = c.blue };
+    Vimwikiblue  = { fg = c.blue, bg = c.none };
     Vimwikibblue  = { fg = c.lblue , bg = c.none };
-    Vimwikiyellow  = { fg = c.yellow };
+    Vimwikiyellow  = { fg = c.yellow , bg = c.none};
     Vimwikibyellow  = { fg = c.lyellow , bg = c.none };
-    Vimwikigreen   = { fg = c.green };
+    Vimwikigreen   = { fg = c.green, bg = c.none };
     Vimwikibgreen   = { fg = c.lgreen , bg = c.none};
-    Vimwikiorange  = { fg = c.orange};
+    Vimwikiorange  = { fg = c.orange, bg = c.none};
     Vimwikiborange  = { fg = c.lorange, bg = c.none};
-    Vimwikired     = { fg = c.red   };
+    Vimwikired     = { fg = c.red , bg = c.none  };
     Vimwikibred     = { fg = c.lred   , bg = c.none};
+    -- VimwikiTag     = { fg = c.magenta , style = "bold"};
+    VimwikiTag     = { fg = c.lred , style = "bold"};
+    Vimwikigray    = { fg=c.dark5, bg = c.none};
+    Vimwikibgray    = { fg=c.dark3, bg = c.none};
+    VimwikiCode    = { fg=c.lpurple };
+    VimwikiCodeT   = { fg = c.lpurple , style = "italic"};
+    VimwikiMath    = { fg = c.yellow };
+    VimwikiMathT   = { fg = c.yellow1 };
+    VimwikiHTMLTag    = { fg = c.dred };
+    VimwikiBoldChar   = { fg = c.lblue, style = "bold"};
+    VimwikiPre   = { fg = c.magenta };
+    VimwikiPreT   = { fg = c.magenta };
+    VimwikiList    = { fg = c.orange };
+    VimwikiTodo   =  { fg = c.blue };
+    VimwikiHR     = { fg = c.yellow };
+    VimwikiEqIn    = { fg = c.red} ;
+    VimwikiEqInT   = { fg = c.lred } ;
+    VimwikiError   = { fg = c.dred, style = "bold"};
+    VimwikiEmoji = { fg = c.yellow};
+    VimwikiDelimiterColor = { fg = c.dred };
+    VimwikiCellSeparator = { fg = c.red };
+    VimwikiCheckBoxDone = { fg = c.gray, style = "italic"};
+    VimwikiPlaceholder = { fg = c.fg_gutter_light };
+    VimwikiMarkers = { fg = c.magenta };
+    VimwikiImageChar = { fg = c.lpurple };
+    VimwikiTableRow = { fg = c.lblue, };
+    VimwikiEqInChar = { fg = c.magenta };
+    VimwikiCodeChar = { fg = c.dpurple };
+    VimwikiCodeCharT = { fg = c.lpurple };
+    VimwikiDelimiter = { fg = c.dred };
+    VimwikiEqInCharT = { fg = c.lmagenta };
+    VimwikiListTodo = { fg = c.lorange, };
+    VimwikiPreDelim = { fg = c.dmagenta, };
+    VimwikiHeaderChar = { fg = c.dyellow, style = "bold"};
+    VimwikiHeaderCharT = { fg = c.lorange, style = "italic,bold"};
+
+    VimwikiLink =    { fg = c.lblue, style = "underline"};
+    VimwikiLinkT   = { fg = c.blue, style = "underline"};
+
+    -- LINKS
+    VimwikiLinkRest = { fg = c.lblue, style = "underline" };
+    VimwikiLinkChar = { fg = c.dblue, style = "underline" };
+
+    VimwikiImage   = { fg = c.cyan, style = "underline" };
+    VimwikiImageT  = { fg = c.lcyan, style = "underline"};
+
+    VimwikiWeblink1  = { fg = c.dcyan, style = "underline" };
+    VimwikiWeblink1T  = { fg = c.lyan, style = "italic,underline" };
+
+    VimwikiLinkCharT = { fg = c.lblue  };
+
+    VimwikiWikiLink1 = { fg = c.dblue, style = "underline"};
+    VimwikiWikiLink1T = { fg = c.lblue, style = "underline"};
+
+    VimwikiWikiLink1Char = { fg = c.lblue, style = "bold"};
+    VimwikiWeblink1Char = { fg = c.lcyan, style = "bold"};
+
+    VimwikiNoExistsLink  = { fg= c.dpurple, style = "italic,underline"};
+    VimwikiNoExistsLinkT = { fg = c.dblue, style = "italic,underline"};
+    VimwikiNoExistsLinkCharT  = { fg= c.dblue, style = "italic"};
+
 
     CopilotSuggestion = { fg = c.fg_gutter_light  };
 
