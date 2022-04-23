@@ -58,8 +58,8 @@ function M.setup(config)
     PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { bg = c.bg_visual, style = "bold" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search = { bg = c.comment, style="bold"}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    IncSearch = { bg = c.bg_sel, style="bold" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Search = { bg = c.bg_search, style="bold"}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    IncSearch = { bg = c.bg_search, style="bold" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 
     SpecialKey = { fg = c.dark3 }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad = { sp = c.error, style = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
@@ -286,6 +286,15 @@ function M.setup(config)
     -- TSTitle             = { };    -- Text that is part of a title.
     -- TSLiteral           = { };    -- Literal text.
     TSURI               = { fg=c.lblue, style="italic"};    -- Any URI like a link or email.
+
+    -- BQF
+    PreviewBorder       = { fg = c.gray };
+    BqfPreviewRange     = { bg = c.bg_search, style = "bold" };
+
+
+
+
+
     VimwikiH1Folding = { fg = c.lyellow, style = "italic" };
     VimwikiH2Folding = { fg = c.lgreen, style = "italic" };
     VimwikiH3Folding = { fg = c.lcyan, style = "italic" };
@@ -502,7 +511,15 @@ function M.setup(config)
 
     -- BufferLine
     BufferLineIndicatorSelected = { fg = c.git.change },
+    BufferLinePick  = { fg = c.magneta, style = "bold"};
+    BufferLinePickVisible  = { fg = c.imagneta, style = "bold"};
+    BufferLineModified = { fg = c.green };
+    BufferLineHintDiagnostic = { fg = c.dcyan };
+    BufferLineInfoDiagnostic = { fg = c.blue };
+    BufferLineErrorSelected = { fg = c.dred, style = "bold" };
     BufferLineFill = { bg = c.black },
+    BufferLineBufferSelected = { fg = c.fg, style = "bold"};
+    BufferLineBuffer = { fg = c.gray };
 
     -- Barbar
     BufferCurrent = { bg = c.fg_gutter, fg = c.fg },
@@ -552,22 +569,22 @@ function M.setup(config)
     CmpDocumentationBorder = { fg = c.border_highlight, bg = c.bg_float },
 
     CmpItemAbbr = { fg = c.fg_gray, bg = c.none },
-    CmpItemAbbrDefault = { fg = c.green, bg= c.none, style="bold"},
-    CmpItemKind = { style = "bold" },
-    CmpItemKindColor = { style = "bold" },
+    CmpItemAbbrDefault = { fg = c.green, bg= c.none}, --, style="bold"},
+    -- CmpItemKind = { style = "bold" },
+    -- CmpItemKindColor = { style = "bold" },
     cmpItemKindDefault = { fg = c.fg, bg = c.none },
-    CmpItemKindFileDefault = { fg = c.yellow, style="bold"},
-    CmpItemAbbrDeprecated = { fg = c.fg_gutter, bg = c.none, style = "strikethrough" },
+    CmpItemKindFileDefault = { fg = c.yellow}, --, style="bold"},
+    CmpItemAbbrDeprecated = { fg = c.fg_gutter, bg = c.none},-- style = "strikethrough" },
 
-    CmpItemKindDefault = { fg = c.blue, bg = c.none, style="bold" },
+    CmpItemKindDefault = { fg = c.blue, bg = c.none}, --style="bold" },
     CmpItemMenu = { fg = c.gray, bg = c.none },
 
-    CmpItemKindFile = { fg = c.yellow, bg = c.none , style="bold"},
-    CmpItemKindFolder = { fg = c.blue, bg = c.none , style="bold"},
-    CmpItemKindKeyword = { fg = c.red, bg = c.none , style="bold"},
-    CmpItemKindKeywordVariable = { fg = c.blue, bg = c.none , style="bold"},
-    CmpItemAbbrMatch = { fg = c.orange1, style = "bold"},-- style = "bold" },
-    CmpItemAbbrMatchFuzzy = { fg = c.yellow2, style = "bold" },
+    CmpItemKindFile = { fg = c.yellow, bg = c.none },-- style="bold"},
+    CmpItemKindFolder = { fg = c.blue, bg = c.none}, --style="bold"},
+    CmpItemKindKeyword = { fg = c.orange, bg = c.none},-- style="bold"},
+    CmpItemKindKeywordVariable = { fg = c.purple, bg = c.none }, --style="bold"},
+    CmpItemAbbrMatch = { fg = c.orange1, bg = c.none },--style = "bold"},-- style = "bold" },
+    CmpItemAbbrMatchFuzzy = { fg = c.yellow2, bg=c.none},--style = "bold" },
 
     CmpItemKindVariable = { fg = c.blue1, bg = c.none },
     CmpItemKindConstant = { fg = c.purple2, bg = c.none },
@@ -575,25 +592,25 @@ function M.setup(config)
     CmpItemKindValue = { fg = c.teal, bg = c.none },
 
     CmpItemKindFunction = { fg = c.yellow, bg = c.none },
-    CmpItemKindMethod = { fg = c.yellow3, bg = c.none, style = "bold" },
-    CmpItemKindConstructor = { fg = c.orange2, bg = c.none, style = "bold" },
+    CmpItemKindMethod = { fg = c.yellow3, bg = c.none},-- style = "bold" },
+    CmpItemKindConstructor = { fg = c.orange2, bg = c.none}, --style = "bold" },
 
-    CmpItemKindClass = { fg = c.orange1, bg = c.none, style = "bold" },
-    CmpItemKindInterface = { fg = c.yellow2, bg = c.none, style = "bold" },
-    CmpItemKindStruct = { fg = c.orange2, bg = c.none, style = "bold" },
-    CmpItemKindEvent = { fg = c.red1, bg = c.none, style = "bold" },
-    CmpItemKindEnum = { fg = c.purple2, bg = c.none, style = "bold" },
-    CmpItemKindUnit = { fg = c.magenta1, bg = c.none, style = "bold" },
+    CmpItemKindClass = { fg = c.orange1, bg = c.none},--, style = "bold" },
+    CmpItemKindInterface = { fg = c.yellow2, bg = c.none},--, style = "bold" },
+    CmpItemKindStruct = { fg = c.orange2, bg = c.none},--, style = "bold" },
+    CmpItemKindEvent = { fg = c.red1, bg = c.none},--, style = "bold" },
+    CmpItemKindEnum = { fg = c.purple2, bg = c.none},--, style = "bold" },
+    CmpItemKindUnit = { fg = c.magenta1, bg = c.none},--, style = "bold" },
 
-    CmpItemKindModule = { fg = c.orange1, bg = c.none, style = "bold" },
-    CmpItemKindText = { fg = c.green3, style = "bold" },
+    CmpItemKindModule = { fg = c.orange1, bg = c.none},--, style = "bold" },
+    CmpItemKindText = { fg = c.green3, bg=c.none},--, style = "bold" },
 
-    CmpItemKindProperty = { fg = c.dblue, bg = c.none, style = "bold" },
-    CmpItemKindField = { fg = c.lblue, bg = c.none, style = "bold" },
-    CmpItemKindTypeParameter = { fg = c.purple1, bg = c.none , style = "bold"},
-    CmpItemKindEnumMember = { fg = c.orange2, bg = c.none , style = "bold"},
-    CmpItemKindOperator = { fg = c.red1, bg = c.none , style = "bold"},
-    CmpItemKindSnippet = { fg = c.teal, bg = c.none, style = "bold" },
+    CmpItemKindProperty = { fg = c.dblue, bg = c.none},--, style = "bold" },
+    CmpItemKindField = { fg = c.lblue, bg = c.none},-- style = "bold" },
+    CmpItemKindTypeParameter = { fg = c.purple1, bg = c.none},-- style = "bold"},
+    CmpItemKindEnumMember = { fg = c.orange2, bg = c.none}, --style = "bold"},
+    CmpItemKindOperator = { fg = c.red, bg = c.none}, --style = "bold"},
+    CmpItemKindSnippet = { fg = c.purple, bg = c.none}, --style = "bold" },
 
     SearchBoxMatch = { bg=c.bg_sel, style = "bold" },
   }

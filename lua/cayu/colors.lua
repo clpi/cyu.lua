@@ -17,7 +17,7 @@ M.c2={}
   M.c1.markup = "#F28779"
   M.c1.keyword = "#FFA759"
   M.c1.special = "#FFD580"
-  M.c1.comment = "#6773"
+  M.c1.comment = "#677380"
   M.c1.constant = "#D4BFFF"
   M.c1.operator = "#F29E74"
   M.c1.error = "#FF3333"
@@ -102,10 +102,11 @@ function M.setup(config)
     -- bg = "#141a24",
     bg = "#171c26",
     terminal_black = "#141a24",
-    bg_highlight = "#272d3a",
+    bg_highlight = "#242b39",
     bg_sel = "#302e50",
+    bg_search = "#404e6a",
     dark4 = "#202630",
-    comment = "#505568",
+    comment = "#526370",
     dark3= "#677380",
     dark5= "#607080",
 
@@ -247,7 +248,7 @@ function M.setup(config)
   colors.bg_float = config.darkFloat and colors.bg_dark or colors.bg
 
   colors.bg_visual = util.darken(colors.blue1, 0.7)
-  colors.bg_search = colors.blue1
+  -- colors.bg_search = colors.blue1
   colors.fg_sidebar = colors.fg_dark
 
   colors.error = colors.red1

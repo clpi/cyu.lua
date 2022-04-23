@@ -1,17 +1,22 @@
 # cayu.nvim
 
-<img src="./res/cayu.png" alt="preview for cayu" />
+<div float="left" align="center">
+    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 46%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+    <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 46%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+</div>
+
 
 ## About
 
-- `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
+
+- `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim][tokyonight] theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
 - If you would like to add this theme to your Vim/Neovim configuration, bearing in mind that it won't be maintained like other popular themes (instead more as a personal project), here's how to do so.
 
 
 ## Installation
 - Installation and configuration are near identical to tokyonight at the moment, but not all flavors or color palette variations are implemented yet. Still, installation instructions remain the same.
 
-- If you're using [packer.nvim](https://github.com/wbthomason/packer.nvim), just copy this code into wherever you keep your packer startup function:
+- If you're using [packer.nvim][packer], just copy this code into wherever you keep your packer startup function:
 
 ```lua
 use "clpi/cayu.nvim"
@@ -23,7 +28,8 @@ use "clpi/cayu.nvim"
 Plug 'clpi/cayu.nvim'
 ```
 
-- _**Note**: haven't tried using the theme in Vim itself yet, only Neovim 0.7)_
+- **Note**: haven't tried using the theme in Vim itself yet, only Neovim 0.7
+ 
 
 
 ## Configuration
@@ -76,3 +82,13 @@ colorscheme cayu
     - [lualine]()
     - [lightline]()
     - ...and friends
+
+
+## Misc
+
+- If you have any [issues][issues] or want any particular plugin supported please feel free to [reach out][issues]!
+
+
+  [issues]: https://github.com/grantwinney/BlogCodeSamples/issues
+  [tokyonight]: https://github.com/folke/tokyonight.nvim
+  [packer]: https://github.com/wbthomason/packer.nvim
