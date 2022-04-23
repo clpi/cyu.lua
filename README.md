@@ -1,8 +1,7 @@
 # cayu.nvim
 
-<div float="left" align="center">
-    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 46%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
-    <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 46%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+<div align="center">
+    <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 80%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
 
 
@@ -84,6 +83,9 @@ colorscheme cayu
     - ...and friends
 
 
+<div align="center">
+    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 80%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+</div>
 ## Misc
 
 - If you have any [issues][issues] or want any particular plugin supported please feel free to [reach out][issues]!
