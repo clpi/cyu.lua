@@ -1,7 +1,7 @@
 # cayu.nvim
 
 <div align="center">
-    <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 80%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+    <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
 
 
@@ -9,7 +9,6 @@
 
 
 - `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim][tokyonight] theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
-- If you would like to add this theme to your Vim/Neovim configuration, bearing in mind that it won't be maintained like other popular themes (instead more as a personal project), here's how to do so.
 
 
 ## Installation
@@ -84,7 +83,7 @@ colorscheme cayu
 
 
 <div align="center">
-    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 80%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
 ## Misc
 
