@@ -295,28 +295,34 @@ function M.setup(config)
 
 
 
-    VimwikiH1Folding = { fg = c.lyellow, style = "italic" };
-    VimwikiH2Folding = { fg = c.lgreen, style = "italic" };
-    VimwikiH3Folding = { fg = c.lcyan, style = "italic" };
-    VimwikiH4Folding = { fg = c.lpurple, style = "italic" };
-    VimwikiH5Folding = { fg = c.lred, style = "italic" };
-    VimwikiH6Folding = { fg = c.lorange, style = "italic" };
-    VimwikiHeader1 = { fg = c.yellow, style = "bold" };
-    VimwikiHeader2 = { fg = c.green, style = "bold" };
-    VimwikiHeader3 = { fg = c.cyan, style = "bold" };
-    VimwikiHeader4 = { fg = c.purple, style = "bold" };
-    VimwikiHeader5 = { fg = c.red, style = "bold" };
-    VimwikiHeader6 = { fg = c.orange, style = "bold" };
+    VimwikiH1Folding = { fg = c.lyellow, bg=c.none, style = "italic" };
+    VimwikiH2Folding = { fg = c.lgreen, bg=c.none, style = "italic" };
+    VimwikiH3Folding = { fg = c.lcyan, bg=c.none, style = "italic" };
+    VimwikiH4Folding = { fg = c.lpurple, bg=c.none, style = "italic" };
+    VimwikiH5Folding = { fg = c.lred, bg=c.none, style = "italic" };
+    VimwikiH6Folding = { fg = c.lorange, bg=c.none, style = "italic" };
+    VimwikiHeader1 = { fg = c.yellow, bg=c.none, style = "bold" };
+    VimwikiHeader2 = { fg = c.green, bg=c.none, style = "bold" };
+    VimwikiHeader3 = { fg = c.cyan, bg=c.none, style = "bold" };
+    VimwikiHeader4 = { fg = c.purple, bg=c.none, style = "bold" };
+    VimwikiHeader5 = { fg = c.red, bg=c.none, style = "bold" };
+    VimwikiHeader6 = { fg = c.orange, bg=c.none, style = "bold" };
+
     Vimwikipurple  = { fg = c.purple, bg = c.none };
     Vimwikibpurple  = { fg = c.lpurple , bg=c.none};
+
     Vimwikiblue  = { fg = c.blue, bg = c.none };
     Vimwikibblue  = { fg = c.lblue , bg = c.none };
+
     Vimwikiyellow  = { fg = c.yellow , bg = c.none};
     Vimwikibyellow  = { fg = c.lyellow , bg = c.none };
+
     Vimwikigreen   = { fg = c.green, bg = c.none };
     Vimwikibgreen   = { fg = c.lgreen , bg = c.none};
+
     Vimwikiorange  = { fg = c.orange, bg = c.none};
     Vimwikiborange  = { fg = c.lorange, bg = c.none};
+
     Vimwikired     = { fg = c.red , bg = c.none  };
     Vimwikibred     = { fg = c.lred   , bg = c.none};
     -- VimwikiTag     = { fg = c.magenta , style = "bold"};
@@ -329,6 +335,7 @@ function M.setup(config)
     VimwikiMathT   = { fg = c.yellow1 };
     VimwikiHTMLTag    = { fg = c.dred };
     VimwikiBoldChar   = { fg = c.lblue, style = "bold"};
+    VimwikiBoldCharT   = { fg = c.blue, style = "bold"};
     VimwikiPre   = { fg = c.magenta };
     VimwikiPreT   = { fg = c.magenta };
     VimwikiList    = { fg = c.orange };
@@ -510,16 +517,19 @@ function M.setup(config)
     healthWarning = { fg = c.warning },
 
     -- BufferLine
-    BufferLineIndicatorSelected = { fg = c.git.change },
-    BufferLinePick  = { fg = c.magneta, style = "bold"};
+    BufferLinePick  = { fg = c.yellow, style = "bold"};
     BufferLinePickVisible  = { fg = c.imagneta, style = "bold"};
     BufferLineModified = { fg = c.green };
     BufferLineHintDiagnostic = { fg = c.dcyan };
     BufferLineInfoDiagnostic = { fg = c.blue };
     BufferLineErrorSelected = { fg = c.dred, style = "bold" };
     BufferLineFill = { bg = c.black },
-    BufferLineBufferSelected = { fg = c.fg, style = "bold"};
+    BufferLineBufferSelected = { fg = c.lgreen};
     BufferLineBuffer = { fg = c.gray };
+    BufferLineTabSelected = { fg = c.orange, style = "bold"};
+    BufferLineWarningSelected = { fg = c.yellow, style = "bold"};
+    BufferLineNumbersSelected = { fg = c.green, bg = c.bg_highlight, style = "bold"};
+    BufferLineIndicatorSelected = { fg = c.lgreen, bg = c.none, style = "bold"};
 
     -- Barbar
     BufferCurrent = { bg = c.fg_gutter, fg = c.fg },
