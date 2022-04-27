@@ -137,9 +137,9 @@ function M.setup(config)
     teal2    = "#7fd0aa",
     teal3    = "#60c09f",
 
-    green1   = "#bafa90",
-    green2   = "#aae07a",
-    green3   = "#8acf6f",
+    green1   = "#d5ff80",
+    green2   = "#c0fa70",
+    green3   = "#aff060",
 
     yellow0  = "#ffda8f",
     yellow1  = "#ffca6f",
@@ -161,8 +161,8 @@ function M.setup(config)
 
     purple1  = "#cfafff",
     purple2  = "#b0a0fa",
-    purple3  = "#9f90ea",
-    purple4  = "#8f80ea",
+    purple3  = "#aa90ef",
+    purple4  = "#a09aea",
 
     white1   = "#faf7ea",
     white2   = "#d9d7ce",

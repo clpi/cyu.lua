@@ -103,7 +103,7 @@ function M.setup(config)
     Keyword = { fg = c.purple}, -- style = config.keywordStyle }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
-    PreProc = { fg = c.cyan }, -- (preferred) generic Preprocessor
+    PreProc = { fg = c.cyan , style = "italic"}, -- (preferred) generic Preprocessor
     -- Include       = { }, --  preprocessor #include
     -- Define        = { }, --   preprocessor #define
     -- Macro         = { }, --    same as Define
@@ -111,7 +111,7 @@ function M.setup(config)
 
     Type      = { fg = c.orange }, -- (preferred) int, long, char, etc.
     -- StorageClass  = { }, -- static, register, volatile, etc.
-    Structure = { fg = c.yellow }, --  struct, union, enum, etc.
+    Structure = { fg = c.yellow , style = "bold"}, --  struct, union, enum, etc.
     Typedef       = { fg = c.red }, --  A typedef
 
     Special     = { fg = c.yellow1 }, -- (preferred) any special symbol
@@ -134,6 +134,8 @@ function M.setup(config)
 
     qfLineNr = { fg = c.dark5 },
     qfFileName = { fg = c.purple },
+
+    cString = { fg = c.green, style = "italic" },
 
     htmlH1 = { fg = c.magenta, style = "bold" },
     htmlH2 = { fg = c.blue, style = "bold" },
@@ -220,8 +222,9 @@ function M.setup(config)
     TSCharacter         = { fg=c.magenta};
     TSCharacterSpecial  = { fg = c.lmagenta, style = "italic"};
     TSComment           = { fg=c.comment, style = 'italic'};    -- For comment blocks.
-    TSWarning         = { fg = c.bg, bg = c.warning },
-    TSDanger          = { fg = c.bg, bg = c.error },
+
+    TSWarning         = { fg = c.warning , style = "bold"},
+    TSDanger          = { fg = c.error , style = 'bold'},
     TSConstructor     = { fg = c.lyellow },
     TSConditional       = { fg=c.red2, style = "italic"};
     TSConstant          = { fg=c.purple2};
@@ -230,13 +233,13 @@ function M.setup(config)
     TSDebug           = { fg = c.lcyan };
     TSError           = { fg = c.red2 };
     TSException         = {fg=c.red1 };
-    TSField           = { fg = c.blue };
+    TSField           = { fg = c.lblue };
     TSFloat           = { fg = c.purple2 };
     TSFuncBuiltin     = { fg = c.yellow2, style = "bold,italic" };
     TSFunction        = { fg = c.yellow, style = "italic" };
-    TSFuncMacro       = { fg = c.magenta, style = "bold"},-- style = "" };
+    TSFuncMacro       = { fg = c.lyellow, style = "bold"},-- style = "" };
     TSInclude         = { fg = c.yellow, style = "italic" };
-    TSKeyword         = { fg = c.orange2, style = "italic"};
+    TSKeyword         = { fg = c.lorange, style = "italic"};
     TSKeywordFunction = { fg = c.dyellow, style ="bold"};
     TSKeywordReturn = { fg = c.orange, style = "bold,italic"};
     TSKeywordOperator = { fg = c.red}, style = "italic";
@@ -256,12 +259,15 @@ function M.setup(config)
     TSPunctSpecial    = { fg = c.orange3 },
     TSRepeat            = { fg=c.orange, style="italic"};    -- For keywords related to loops.
     TSString          = { fg = c.green1, style = "italic" }; -- For strings.
+    cTSString         =  { fg = c.green1, style = "italic" }; -- For strings.
+    cTSStringEscape   =  { fg = c.yellow, style = "italic"},
+    cppRawString      = { fg = c.yellow, style = "italic"},
     TSStringRegex     = { fg = c.teal1 }, -- For regexes.
     TSStringEscape    = { fg = c.orange1 }, -- For escape characters within a string.
     TSStringSpecial   = { fg = c.yellow1, style = 'italic'};
     TSSymbol          = { fg = c.cyan2, style = "bold,italic" }; -- For identifiers referring to symbols or atoms.
     TSPreProc = { fg = c.teal, style = "italic"};
-    TSDefine = { fg = c.orange2, style = "bold"};
+    TSDefine = { fg = c.dorange, style = "bold"};
 
     TSStorageClass = { fg = c.cyan2 };
 
@@ -279,9 +285,9 @@ function M.setup(config)
     TSTagDelimiter  = { fg = c.red }; -- Tag delimiter like `<` `>` `/`
     -- TSText              = { };    -- For strings considered text in a markup language.
     TSTextReference = { fg = c.teal, style ="italic" },
-    -- TSEmphasis          = { };    -- For text to be represented with emphasis.
+    TSEmphasis          = { style = "italic,bold"};    -- For text to be represented with emphasis.
     -- TSUnderline         = { };    -- For text to be represented with an underline.
-    -- TSStrike            = { };    -- For strikethrough text.
+    TSStrike            = { style = "strikethrough" };    -- For strikethrough text.
 
     -- TSTitle             = { };    -- Text that is part of a title.
     -- TSLiteral           = { };    -- Literal text.

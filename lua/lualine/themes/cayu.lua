@@ -5,12 +5,12 @@ local util = require("cayu.util")
 local cayu = {}
 
 cayu.normal = {
-  a = { bg = colors.green2, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.green2 },
+  a = { bg = colors.green1, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.green1 },
   c = { bg = colors.bg_statusline, fg = colors.gray },
   x = { bg = colors.bg_statusline, fg = colors.gray },
-  y = { bg = colors.fg_gutter, fg = colors.green2 },
-  z = { bg = colors.green2, fg = colors.black },
+  y = { bg = colors.fg_gutter, fg = colors.green1 },
+  z = { bg = colors.green1, fg = colors.black },
 }
 
 cayu.insert = {
