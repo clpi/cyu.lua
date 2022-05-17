@@ -103,7 +103,7 @@ function M.setup(config)
     Keyword = { fg = c.purple}, -- style = config.keywordStyle }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
-    PreProc = { fg = c.cyan , style = "italic"}, -- (preferred) generic Preprocessor
+    PreProc = { fg = c.llyellow , style = "italic"}, -- (preferred) generic Preprocessor
     -- Include       = { }, --  preprocessor #include
     -- Define        = { }, --   preprocessor #define
     -- Macro         = { }, --    same as Define
@@ -266,7 +266,7 @@ function M.setup(config)
     TSStringEscape    = { fg = c.orange1 }, -- For escape characters within a string.
     TSStringSpecial   = { fg = c.yellow1, style = 'italic'};
     TSSymbol          = { fg = c.cyan2, style = "bold,italic" }; -- For identifiers referring to symbols or atoms.
-    TSPreProc = { fg = c.teal, style = "italic"};
+    TSPreProc = { fg = c.llyellow, style = "italic"};
     TSDefine = { fg = c.dorange, style = "bold"};
 
     TSStorageClass = { fg = c.cyan2 };

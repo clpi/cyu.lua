@@ -221,6 +221,7 @@ function M.setup(config)
     colors.dyellow  = colors.yellow2
     colors.ddyellow = colors.yellow3
     colors.lyellow  = colors.yellow0
+    colors.llyellow  = "#ffeaaf"
 
     colors.orange   = colors.orange2
     colors.dorange  = colors.orange3
