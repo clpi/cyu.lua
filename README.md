@@ -1,14 +1,12 @@
-# cayu.nvim
+# cyu.lua 
 
 <div align="center">
     <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
 
-
-## About
-
-
-- `04/21/22 08:04` An ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim][tokyonight] theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
+<big>A simple, darker, ayu-based colorscheme for Neovim in particular, and a few other editors.</Big>
+- For history buffs, this is a Neovim theme in Lua which roughly follows the ayu colorset while trying to make the extra Treesitter parsing show all the colors I believe it is truly worth, for all the wonderful plugins it's worth.
+- It's an ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim][tokyonight] theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
 
 
 ## Installation
@@ -17,13 +15,12 @@
 - If you're using [packer.nvim][packer], just copy this code into wherever you keep your packer startup function:
 
 ```lua
-use "clpi/cayu.nvim"
+use "clpi/cyu.lua"
 ```
-
 
 - Or in VimL (with [plug.vim](https://github.com/junegunn/vim-plug)):
 ```vim
-Plug 'clpi/cayu.nvim'
+Plug 'clpi/cyu.lua'
 ```
 
 - **Note**: haven't tried using the theme in Vim itself yet, only Neovim 0.7
@@ -35,7 +32,7 @@ Plug 'clpi/cayu.nvim'
 - This can be achieved through the Lua API (in Neovim 0.5+):_
 ```lua
 use  { 
-    "clpi/cayu.nvim",
+    "clpi/cyu.lua",
     config = function()
         vim.g.cayu_style = "night" -- Only palette variant available right now
         vim.g.cayu_italic_functions = true
@@ -50,7 +47,7 @@ vim.cmd[[ colorscheme cayu ]]
 
 - In VimL:
 ```vim
-Plug 'clpi/cayu.nvim'
+Plug 'clpi/cayu.lua'
 
 " ... after plugin spec ...
 
@@ -85,9 +82,17 @@ colorscheme cayu
 <div align="center">
     <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
+
 ## Misc
 
 - If you have any [issues][issues] or want any particular plugin supported please feel free to [reach out][issues]!
+
+- Looking to try to bring my brand of ayu-inspired flavorings to all other sorts of programs in neat fancy packages, maybe it won't be just me excited for that small fact! 
+- Others, really just.. one of you, I would really call into question the ability for a vim colorscheme to and i quote "bring about the most immediate foul and dread upon this household the likes I have not seen ever before" this just doesnot sound like the sort of terror and existential horror that should be spoken of with the likes of with my personal vim colorscheme.
+- All the rest of you, I love working with this colorscheme and the source code may be inspected at your leasure for any such "foul" or "untoward" practices, but uh, have fun!
+<div align="center">
+    <img src="./res/hxtheme.png" alt="preview of c code in helix in barely tossed together TOML for the theme" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+</div>
 
 
   [issues]: https://github.com/grantwinney/BlogCodeSamples/issues
