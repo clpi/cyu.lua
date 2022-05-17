@@ -1,0 +1,179 @@
+"attribute" = "lteal"
+
+"keyword" = { fg = "dyellow", modifiers = [] }
+"keyword.directive" = { fg = "lred", modifiers = ["italic"] } # -- preprocessor comments (#if in C)
+"keyword.operator" = { fg = "dred", modifiers = ["italic", "bold"] } # -- preprocessor comments (#if in C)
+"keyword.function" = { fg = "lorange" } # -- preprocessor comments (#if in C)
+"keyword.control" = { fg = "red" } # -- preprocessor comments (#if in C)
+"keyword.control.conditional" = { fg = "magenta" } # -- preprocessor comments (#if in C)
+"keyword.control.repeat" = { fg = "lred" } # -- preprocessor comments (#if in C)
+"keyword.control.import" = { fg = "lorange", modifiers = ["italic"] } # -- preprocessor comments (#if in C)
+"keyword.control.exception" = { fg = "lred", modifiers = ["bold"] } # -- preprocessor comments (#if in C)
+
+"namespace" = { fg = "orange"}
+"punctuation" =  {fg = "red"}
+"punctuation.delimiter" = { fg = "dred"}
+"punctuation.bracket" = { fg = "lred"}
+"operator" = { fg = "lred"}
+"special" = {fg = "lyellow"}
+
+"variable" = "lblue"
+"variable.other.member" = "dblue"
+"variable.parameter" = { fg = "purple" }
+"variable.builtin" = "dpurple"
+"variable.function" = "dblue"
+
+"type" = { fg = "orange", modifiers = []}
+"type.builtin" = { fg =  "lblue", modifiers = ["italic"]} 
+
+"constructor" = { fg = "orange", modifiers = ["bold"]}
+
+"function" = { fg = "yellow", modifiers = ["italic"]}
+"function.macro" = { fg = "dyellow", modifiers = ["bold", "italic"]}
+"function.builtin" = { fg = "lred", modifiers = ["italic"]}
+"function.method" = { fg = "lyellow", modifiers = ["italic"]}
+"function.special" = { fg = "dred"}
+
+"tag" = { fg = "blue"}
+
+"comment" = { fg = "gray", modifiers = ["italic"]}
+"comment.line" = { fg = "barfg", modifiers = ["italic"]}
+"comment.block.documentation" = { fg = "dorange", modifiers = ["italic"]}
+
+"constant" = "lpurple"
+"constant.builtin" = { fg = "purple", modifiers = ["italic"]}
+"constant.builtin.boolean" = { fg = "purple", modifiers = ["italic"] }
+"constant.character.escape" = { fg = "orange", modifiers = [] }
+"constant.numeric" = "purple"
+"string" = "green"
+"string.regexp" = { fg = "teal", modifiers = ["italic"]}
+"string.special.path" = { fg = "dblue", modifiers = ["underlined"]}
+"string.special.url" = { fg = "lblue", modifiers = ["underlined"]}
+"string.special.special" = { fg = "dteal", modifiers = ["italic"]}
+# used for lifetimes
+"label" = { fg = "lorange", modifiers = ["bold"]}
+
+
+# INTERFACE
+
+"markup.heading" = "lred"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.link.url" = { fg = "lblue" ,modifiers = ["underlined"] }
+"markup.link.text" = "fg_gray"
+"markup.raw" = "fg"
+
+"diff.plus" = { fg =  "vadd"}
+"diff.minus" = { fg = "vdelete" }
+"diff.delta" = { fg = "vchange" }
+
+"ui.background" = { bg = "bg" }
+"ui.linenr" = { fg = "fg_gutter_light", bg = "fg_gutter"}
+"ui.linenr.selected" = { fg = "lorange", modifiers = ["bold"], bg = "fg_gutter"}
+"ui.statusline" = { fg = "barfg", bg = "barbg" }
+"ui.statusline.inactive" = { fg = "gray", bg = "bg" }
+"ui.popup" = { fg = "gray" , bg = "fg_gutter" }
+"ui.window" = { fg = "gray", bg = "gray", modifiers = [ ] }
+"ui.help" = { bg = "fg_gutter", fg = "fg_gray", modifiers = [ ] }
+
+"ui.text" = { fg = "ui.fg", modifiers = [] }
+"ui.text.focus" = { fg = "white", modifiers = ["bold"] }
+"ui.linenr.selected" = { bg = "base3" }
+
+"ui.selection" = { bg = "bg_sel", modifiers = ["reversed"] }
+"ui.selection.primary" = { bg = "bg_ser" }
+"ui.cursor.select" = { bg = "delta" }
+"ui.cursor.insert" = { bg = "white" }
+"ui.cursor.match" = { fg = "bg", bg = "#yellow" }
+"ui.cursor" = { modifiers = ["reversed"] }
+"ui.highlight" = { bg = "bg" }
+
+"ui.menu.selected" = { fg = "revolver", bg = "white" }
+
+"diagnostic" = { modifiers = ["underlined"] }
+
+"warning" = {fg="dorange", modifiers = ["red"]}
+"error" = {fg="dred", modifiers = ["red"]}
+"info" = {fg="dblue", modifiers = ["red"]}
+"hint" = {fg="lcyan", modifiers = ["red"]}
+
+[palette]
+lblue    = "#aacfff"
+blue    = "#9abff0"
+dblue    = "#7fa0ea"
+ddblue    = "#6a90df"
+
+lcyan    = "#8feaef"
+cyan    = "#7fd0da"
+dcyan    = "#5fc0cf"
+
+lteal    = "#9aeaaf"
+teal    = "#7fd0aa"
+dteal    = "#60c09f"
+
+green   = "#d5ff80"
+dgreen   = "#c0fa70"
+ddgreen   = "#aff060"
+
+llyellow  = "#ffeaaf"
+lyellow  = "#ffda8f"
+yellow  = "#ffca6f"
+dyellow  = "#f0ba5f"
+ddyellow  = "#eaaa5a"
+
+orange  = "#ffaf6f"
+dorange  = "#f09a5f"
+ddorange  = "#ea8f5a"
+
+lred     = "#ff9a9f"
+red     = "#fa8a8f"
+dred     = "#f07a6f"
+
+lmagenta = "#fa9aca"
+magenta = "#fa9aca"
+dmagenta = "#f080ba"
+ddmagenta = "#ea70aa"
+
+lurple  = "#cfafff"
+purple  = "#b0a0fa"
+durple  = "#aa90ef"
+ddurple  = "#a09aea"
+
+white   = "#faf7ea"
+white2   = "#d9d7ce"
+
+# Git
+vadd    = "#cce78e"
+vchange = "#95e6bb"
+vdelete = "#ff90a0"
+
+# UI
+
+## EDITOR
+bgd    = "#151a22"
+bg     = "#171c26"
+fg     = "#d9d7ce"
+bg_hi  = "#242b39"
+bg_dhi = "#141a24"
+bg_sel = "#302e50"
+bg_ser = "#404e6a"
+
+barbg = "#202630"
+barfg     = "#6d728a"
+
+gray           = "#556575"
+fg_gray        = "#c3c0ba"
+
+bg_foc   = "#526370"
+bg_fochi = "#677380"
+bg_sfochi= "#607080"
+
+fg_gutter      = "#343f4c"
+fg_gutter_light= "#4d4751"
+
+## UI PANEL
+
+
+
+
+

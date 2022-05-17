@@ -80,7 +80,16 @@ colorscheme cayu
 
 
 <div align="center">
-    <img src="./res/cmp.png" alt="preview for cayu" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+    <img 
+        src="./res/cmp.png" 
+        alt="preview for cayu" 
+        style="image-rendering:crisp-edges; 
+               object-position: center; 
+               width: 100%; height: auto; 
+               object-fit: cover;
+               border: solid 1px #bbb; 
+               object-fit: fill;"
+    />
 </div>
 
 ## Misc
