@@ -34,28 +34,28 @@ Plug 'clpi/cyu.lua'
 use  { 
     "clpi/cyu.lua",
     config = function()
-        vim.g.cyu_style = "night" -- Only palette variant available right now
-        vim.g.cyu_italic_functions = true
-        vim.g.cyu_sidebars = {}  -- Specify window types to shade differentially
+        vim.g.cayu_style = "night" -- Only palette variant available right now
+        vim.g.cayu_italic_functions = true
+        vim.g.cayu_sidebars = {}  -- Specify window types to shade differentially
     end
 }
 -- ... (after packer startup) ...
-vim.cmd[[ colorscheme cyu ]]
+vim.cmd[[ colorscheme cayu ]]
     
 ```
 
 
 - In VimL:
 ```vim
-Plug 'clpi/cyu.lua'
+Plug 'clpi/cayu.lua'
 
 " ... after plugin spec ...
 
-let g:cyu_style = "night"
-let g:cyu_style_functions = true
-let g:cyu_sidebars = {}
+let g:cayu_style = "night"
+let g:cayu_style_functions = true
+let g:cayu_sidebars = {}
 
-colorscheme cyu
+colorscheme cayu
 ```
 
 
@@ -79,33 +79,31 @@ colorscheme cyu
     - ...and friends
 
 
-![Preview for cyu]("./res/cmp.png")
-<!-- <div align="center"> -->
-<!--     <img  -->
-<!--         src="./res/cmp.png"  -->
-<!--         alt="preview for cyu"  -->
-<!--         style="image-rendering:crisp-edges;  -->
-<!--                object-position: center;  -->
-<!--                border-radius: 3px; -->
-<!--                width: 100%; height: auto;  -->
-<!--                object-fit: cover; -->
-<!--                border: solid 1px #bbb;  -->
-<!--                object-fit: fill;" -->
-<!--     /> -->
-<!-- </div> -->
 
 ## Misc
-- Other features...
-
-![Preview for cyu in helix]("./res/hxtheme.png")
 
 - If you have any [issues][issues] or want any particular plugin supported please feel free to [reach out][issues]!
 
 - Looking to try to bring my brand of ayu-inspired flavorings to all other sorts of programs in neat fancy packages, maybe it won't be just me excited for that small fact! 
 - Others, really just.. one of you, I would really call into question the ability for a vim colorscheme to and i quote "bring about the most immediate foul and dread upon this household the likes I have not seen ever before" this just doesnot sound like the sort of terror and existential horror that should be spoken of with the likes of with my personal vim colorscheme.
 - All the rest of you, I love working with this colorscheme and the source code may be inspected at your leasure for any such "foul" or "untoward" practices, but uh, have fun!
+<div align="center">
+    <img src="./res/hxtheme.png" alt="preview of c code in helix in barely tossed together TOML for the theme" style="
+        box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
+        image-rendering: crisp-edges; 
+        border-color: transparent;
+        border-radius: 10px;
+        object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+</div>
 
-
+<div align="center">
+    <img src="./res/cmp.png" alt="preview of c code in helix in barely tossed together TOML for the theme" style="
+        box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
+        image-rendering: crisp-edges; 
+        border-color: transparent;
+        border-radius: 10px;
+        object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
+</div>
 
   [issues]: https://github.com/grantwinney/BlogCodeSamples/issues
   [tokyonight]: https://github.com/folke/tokyonight.nvim
