@@ -4,8 +4,13 @@
     <img src="./res/luacmp.png" alt="preview of lua code" style="image-rendering: crisp-edges; object-position: center; width: 100%; height: auto; object-fit: cover;border: solid 1px #bbb; object-fit: fill;"/>
 </div>
 
-<big>A simple, darker, ayu-based colorscheme for Neovim in particular, and a few other editors.</Big>
-- For history buffs, this is a Neovim theme in Lua which roughly follows the ayu colorset while trying to make the extra Treesitter parsing show all the colors I believe it is truly worth, for all the wonderful plugins it's worth.
+<hr/>
+<br/><br/>
+<big>A simple, darker, ayu-based colorscheme for Neovim in particular, and a few other Terminal-based and GUI editors.</Big>
+<br/><br/>
+<hr/>
+
+- For history buffs, this is a Neovim theme in Lua which roughly follows the ayu colorset while trying to make the extra Treesitter parsing show all the colors I believe it is truly worth, for all the wonderful plugins it's worth. I hope all the goofy and weird color coverage is worth it! I use it!
 - It's an ayu-based them, intended to be a personal theme I can continually modify and tweak over time. The repo itself is almost fully based on the (excellent) [tokyonight.nvim][tokyonight] theme and Github repo. The cuurrent end-product is something which looks vaguely colorful and resembles its inspiration Ayu ever-so-vaguely... I think?
 
 
@@ -17,14 +22,7 @@
 ```lua
 use "clpi/cyu.lua"
 ```
-
-- Or in VimL (with [plug.vim](https://github.com/junegunn/vim-plug)):
-```vim
-Plug 'clpi/cyu.lua'
-```
-
-- **Note**: haven't tried using the theme in Vim itself yet, only Neovim 0.7
- 
+- **Note**: This theme only works in NeoVim (preferably, the latest stable version) for now. However, a vim version should be an easy task.
 
 
 ## Configuration
@@ -42,20 +40,6 @@ use  {
 -- ... (after packer startup) ...
 vim.cmd[[ colorscheme cayu ]]
     
-```
-
-
-- In VimL:
-```vim
-Plug 'clpi/cayu.lua'
-
-" ... after plugin spec ...
-
-let g:cayu_style = "night"
-let g:cayu_style_functions = true
-let g:cayu_sidebars = {}
-
-colorscheme cayu
 ```
 
 
@@ -85,8 +69,6 @@ colorscheme cayu
 - If you have any [issues][issues] or want any particular plugin supported please feel free to [reach out][issues]!
 
 - Looking to try to bring my brand of ayu-inspired flavorings to all other sorts of programs in neat fancy packages, maybe it won't be just me excited for that small fact! 
-- Others, really just.. one of you, I would really call into question the ability for a vim colorscheme to and i quote "bring about the most immediate foul and dread upon this household the likes I have not seen ever before" this just doesnot sound like the sort of terror and existential horror that should be spoken of with the likes of with my personal vim colorscheme.
-- All the rest of you, I love working with this colorscheme and the source code may be inspected at your leasure for any such "foul" or "untoward" practices, but uh, have fun!
 <div align="center">
     <img src="./res/hxtheme.png" alt="preview of c code in helix in barely tossed together TOML for the theme" style="
         box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
