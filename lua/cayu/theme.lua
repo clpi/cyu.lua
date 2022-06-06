@@ -1,5 +1,19 @@
 local util = require("cayu.util")
 local colors = require("cayu.colors")
+local hl = vim.api.nvim_set_hl
+local hilink = function(name, link) 
+  hl(0, name, { link = link })
+end
+-- @NOTE: applies no fg or bg colors , only style
+local style = function(name, style)
+  
+
+end
+local color = function(name, fg, bg, style)
+  if name and fg and bg and style then 
+    hl(0, name, { fg = fg, bg = bg, style = style})
+  end
+end
 local C = colors.c1
 
 local M = {}
@@ -139,6 +153,10 @@ function M.setup(config)
 
     htmlH1 = { fg = c.magenta, style = "bold" },
     htmlH2 = { fg = c.blue, style = "bold" },
+    htmlH3 = { fg = c.purple, style = "bold" },
+    htmlH4 = { fg = c.red, style = "bold" },
+    htmlH5 = { fg = c.orange, style = "bold"},
+    htmlH6 = { fg = c.yellow, style = "bold"},
 
     mkdHeading = { fg = c.orange, style = "bold" },
     mkdCode = { bg = c.terminal_black, fg = c.fg },
@@ -147,13 +165,23 @@ function M.setup(config)
     mkdCodeEnd = { fg = c.teal, style = "bold" },
     mkdLink = { fg = c.blue, style = "underline" },
 
+    jsonTSLabel = { fg = c.orange2 },
+
     markdownHeadingDelimiter = { fg = c.orange, style = "bold" },
     markdownCode = { fg = c.teal },
     markdownCodeBlock = { fg = c.teal },
     markdownH1 = { fg = c.magenta, style = "bold" },
     markdownH2 = { fg = c.blue, style = "bold" },
+    markdownH3 = { fg = c.purple, style = "bold" },
+    markdownH4 = { fg = c.red, style = "bold" },
+    markdownH5 = { fg = c.orange, style = "bold"},
+    markdownH6 = { fg = c.yellow, style = "bold"},
     markdownLinkText = { fg = c.blue, style = "underline" },
 
+    tsxTSConstructor = { fg = c.orange2, style = "bold,italic"},
+    tsxTSTagAttribute = { fg = c.dpurple, style = "italic"},
+    typescriptTSConstructor = { fg = c.orange1, style = "bold"},
+    yamlTSField = { fg = c.cyan2 },
     -- NvimLambda = { fg = c.magenta, style = "bold" },
     -- NvimCurly = { fg = C.operator},-- style = "bold" },
 
@@ -167,6 +195,8 @@ function M.setup(config)
     LspReferenceText = { bg = c.fg_gutter }, -- used for highlighting "text" references
     LspReferenceRead = { bg = c.fg_gutter }, -- used for highlighting "read" references
     LspReferenceWrite = { bg = c.fg_gutter }, -- used for highlighting "write" references
+
+    LspCodeLensSeparator = { fg = c.gray },
 
     DiagnosticError = { fg = c.error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
     DiagnosticWarn = { fg = c.warning }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
@@ -246,6 +276,8 @@ function M.setup(config)
     TSLabel           = { fg = c.purple, style = 'italic' },
     TSEnvironment     = { fg = c.teal },
     TSEnvironmentName = { fg = c.teal, style = "italic" },
+    TSMath            = { fg = c.lmagenta },
+
     TSMethod            = { fg=c.orange2, style="italic"},
     TSNamespace         = { fg = c.purple1},
     -- TSNone              = { };    2-- TODO: docs
@@ -283,14 +315,14 @@ function M.setup(config)
     TSTag           = { fg = c.cyan2 }; -- Tags like html tag names.
     TSTagAttribute  = { fg = c.teal, style = "italic" }; -- Tags like html tag names.
     TSTagDelimiter  = { fg = c.red }; -- Tag delimiter like `<` `>` `/`
-    -- TSText              = { };    -- For strings considered text in a markup language.
+    TSText              = {  fg = c.fg },
+    TSTitle             = {  fg = c.lblue },
     TSTextReference = { fg = c.teal, style ="italic" },
     TSEmphasis          = { style = "italic,bold"};    -- For text to be represented with emphasis.
-    -- TSUnderline         = { };    -- For text to be represented with an underline.
+    TSUnderline         = { style = "underline" };    -- For text to be represented with an underline.
     TSStrike            = { style = "strikethrough" };    -- For strikethrough text.
 
-    -- TSTitle             = { };    -- Text that is part of a title.
-    -- TSLiteral           = { };    -- Literal text.
+    TSLiteral           = { fg = c.teal };    -- Literal text.
     TSURI               = { fg=c.lblue, style="italic"};    -- Any URI like a link or email.
 
     -- BQF
@@ -298,6 +330,32 @@ function M.setup(config)
     BqfPreviewRange     = { bg = c.bg_search, style = "bold" };
 
 
+    NotifyERRORBorder= { fg = c.red },
+    NotifyWARNBorder= { fg = c.yellow },
+    NotifyINFOBorder={ fg = c.green },
+    NotifyDEBUGBorder={ fg = c.grey },
+    NotifyTRACEBorder={ fg = c.purple },
+
+    NotifyERRORIcon={ fg = c.red },
+    NotifyWARNIcon={ fg = c.yellow },
+    NotifyINFOIcon={ fg = c.green },
+    NotifyDEBUGIcon={ fg = c.grey },
+    NotifyTRACEIcon={ fg = c.purple },
+
+    NotifyERRORTitle= { fg = c.red },
+    NotifyWARNTitle={ fg = c.yellow },
+    NotifyINFOTitle={ fg = c.green },
+    NotifyDEBUGTitle={ fg = c.grey },
+    NotifyTRACETitle={ fg = c.purple },
+
+    -----
+    rainbowcol1=  { fg = c.red },
+    rainbowcol2=  { fg = c.orange },
+    rainbowcol3=  { fg = c.yellow },
+    rainbowcol4=  { fg = c.green },
+    rainbowcol5=  { fg = c.blue },
+    rainbowcol6=  { fg = c.purple },
+    rainbowcol7=  { fg = c.green },
 
 
 
@@ -399,6 +457,7 @@ function M.setup(config)
     IndentBlankline = { fg = c.fg_gutter, bg = c.none };
     IndentBlanklineChar = { fg = c.fg_gutter_light, bg = c.none };
     IndentBlanklineContextChar = { fg = c.yellow, bg = c.none , style = "bold"};
+    IndentBlanklineContextStart = { style = "underline"},
 
 
     -- Lua
@@ -424,6 +483,8 @@ function M.setup(config)
     diffLine = { fg = c.comment },
     diffIndexLine = { fg = c.magenta },
 
+
+
     -- Neogit
     NeogitBranch = { fg = c.magenta },
     NeogitRemote = { fg = c.purple },
@@ -447,6 +508,17 @@ function M.setup(config)
     TelescopeBorder = { fg = c.border_highlight, bg = c.bg_float },
     TelescopeNormal = { fg = c.fg, bg = c.bg_float },
     TelescopePreviewMatch = { c = c.fg, bg = c.bg },
+
+    TelescopePromptNormal = { fg = c.fg, bg = c.black },
+    TelescopePromptPrefix = { fg = c.magenta, bg = c.black },
+    TelescopeSelectionCaret = { fg = c.magenta2 },
+    TelescopePromptCounter = { fg = c.gray },
+    TelescopePromptBorder = { fg = c.border_highlight },
+    TelescopeSelection = { fg = c.white1, bg = c.bg_sel, style = "bold" },
+    TelescopeMatching = { fg = c.yellow1 },
+    TelescopePreviewTitle = { fg = c.yellow1, bg = c.bg },
+    TelescopeResultsTitle = { fg = c.bg, red1 = c.bg },
+    TelescopePromptTitle = { fg = c.orange1, bg = c.bg },
 
     -- NvimTree
     NvimTreeNormal = { fg = c.fg_gray, bg = c.bg_sidebar },
@@ -629,9 +701,137 @@ function M.setup(config)
     CmpItemKindSnippet = { fg = c.purple, bg = c.none}, --style = "bold" },
 
     SearchBoxMatch = { bg=c.bg_sel, style = "bold" },
+
+    cppTSProperty = { fg = c.llyellow, style = "italic" },
+    bashTSFuncBuiltin = { fg = c.dorange, style = "italic,bold" },
+    bashTSParameter = { fg = c.dpurple, style = "italic" },
+
+    luaTSConstructor = { fg = c.lmagenta, style = "bold"},
+
   }
 
+  vim.g.terminal_color_0 = c.bg
+  vim.g.terminal_color_8 = c.gray
+
+  vim.g.terminal_color_1 = c.lred
+  vim.g.terminal_color_9 = c.dred
+
+  vim.g.terminal_color_2 = c.llyellow
+  vim.g.terminal_color_10 = c.dyellow
+
+  vim.g.terminal_color_3 = c.lorange
+  vim.g.terminal_color_11 = c.dorange
+
+  vim.g.terminal_color_4 = c.lblue
+  vim.g.terminal_color_12 = c.dblue
+
+  vim.g.terminal_color_5 = c.lmagenta
+  vim.g.terminal_color_13 = c.dmagenta
+
+  vim.g.terminal_color_6 = c.lcyan
+  vim.g.terminal_color_14 = c.dcyan
+
+  vim.g.terminal_color_7 = c.white1
+  vim.g.terminal_color_15 = c.white2
+
+
+------ LATEX ------
+-- vim.api.nvim_set_hl(0, 'latexTSComment', {})
+-- vim.api.nvim_set_hl(0, 'latexTSEmphasis', {})
+-- vim.api.nvim_set_hl(0, 'latexTSEnvironment', {})
+-- vim.api.nvim_set_hl(0, 'latexTSEnvironmentName', {})
+-- vim.api.nvim_set_hl(0, 'latexTSFuncMacro', {})
+-- vim.api.nvim_set_hl(0, 'latexTSFunction', {})
+-- vim.api.nvim_set_hl(0, 'latexTSInclude', {})
+-- vim.api.nvim_set_hl(0, 'latexTSMath', {})
+-- vim.api.nvim_set_hl(0, 'latexTSNamespace', {})
+-- vim.api.nvim_set_hl(0, 'latexTSOperator', {})
+-- vim.api.nvim_set_hl(0, 'latexTSParameter', {})
+-- vim.api.nvim_set_hl(0, 'latexTSPunctBracket', {})
+-- vim.api.nvim_set_hl(0, 'latexTSPunctSpecial', {})
+-- vim.api.nvim_set_hl(0, 'latexTSString', {})
+-- vim.api.nvim_set_hl(0, 'latexTSStringRegex', {})
+-- vim.api.nvim_set_hl(0, 'latexTSTextReference', {})
+-- vim.api.nvim_set_hl(0, 'latexTSTitle', {})
+
+------ LUA ------
+-- vim.api.nvim_set_hl(0, 'LuaTSBoolean', {})
+-- vim.api.nvim_set_hl(0, 'LuaTSComment', {})
+-- vim.api.nvim_set_hl(0, 'luaTSConditional', {})
+-- vim.api.nvim_set_hl(0, 'luaTSConstructor', {})
+-- vim.api.nvim_set_hl(0, 'luaTSField', {})
+-- vim.api.nvim_set_hl(0, 'luaTSFunction', {})
+-- vim.api.nvim_set_hl(0, 'luaTSFuncBuiltin', {})
+-- vim.api.nvim_set_hl(0, 'LuaTSKeyword', {})
+-- vim.api.nvim_set_hl(0, 'luaTSKeywordFunction', {})
+-- vim.api.nvim_set_hl(0, 'luaTSMethod', {})
+-- vim.api.nvim_set_hl(0, 'luaTSNumber', {})
+-- vim.api.nvim_set_hl(0, 'luaTSOperator', {})
+-- vim.api.nvim_set_hl(0, 'luaTSParameter', {})
+-- vim.api.nvim_set_hl(0, 'luaTSPunctBracket', {})
+-- vim.api.nvim_set_hl(0, 'luaTSPunctDelimiter', {})
+-- vim.api.nvim_set_hl(0, 'luaTSString', {})
+-- vim.api.nvim_set_hl(0, 'LuaTSVariable', {})
+
+------ NEORG ------
+-- vim.api.nvim_set_hl(0, 'NeorgCodeBlock', {})
+-- vim.api.nvim_set_hl(0, 'NeorgLinkLocationURL', {})
+
+------ PYTHON ------
+-- vim.api.nvim_set_hl(0, 'pythonTSBoolean', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSComment', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSConditional', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSConstant', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSConstBuiltin', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSConstructor', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSField', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSFuncBuiltin', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSFunction', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSInclude', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSKeyword', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSKeywordFunction', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSKeywordOperator', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSKeywordReturn', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSMethod', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSNumber', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSOperator', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSParameter', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSPunctBracket', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSPunctDelimiter', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSRepeat', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSString', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSStringEscape', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSType', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSTypeBuiltin', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSVariable', {})
+-- vim.api.nvim_set_hl(0, 'pythonTSVariableBuiltin', {})
   theme.defer = {}
+  hilink('AerialArrayIcon', 'Constant')
+  hilink('AerialBooleanIcon', 'Boolean')
+  hilink('AerialClassIcon', 'Type')
+  hilink('AerialConstantIcon', 'Constant')
+  hilink('AerialConstructorIcon', 'TSConstructor')
+  hilink('AerialEnumIcon', 'Type')
+  hilink('AerialEnumMemberIcon','TSField')
+  hilink('AerialEventIcon', 'Type')
+  hilink('AerialFieldIcon', 'String')
+  hilink('AerialFileIcon', 'Include')
+  hilink('AerialFunctionIcon', 'Function')
+  hilink('AerialInterfaceIcon', 'Type')
+  hilink('AerialKeyIcon', 'Type')
+  hilink('AerialMethodIcon', 'TSMethod')
+  hilink('AerialModuleIcon', 'Include')
+  hilink('AerialNamespaceIcon', 'TSNamespace')
+  hilink('AerialNullIcon', 'Type')
+  hilink('AerialNumberIcon', 'Number')
+  hilink('AerialObjectIcon', 'TSField')
+  hilink('AerialOperatorIcon', '')
+  hilink('AerialPackageIcon', 'Include')
+  hilink('AerialPropertyIcon', 'TSProperty')
+  hilink('AerialStringIcon', 'String')
+  hilink('AerialStructIcon', 'TSField')
+  hilink('AerialTypeParameterIcon', 'TSParameter' )
+  hilink('AerialVariableIcon', 'TSVariableBuiltin' )
 
   if config.hideInactiveStatusline then
     local inactive = { style = "underline", bg = c.bg, fg = c.bg, sp = c.border }
@@ -648,4 +848,7 @@ function M.setup(config)
   return theme
 end
 
+
 return M
+
+
