@@ -18,6 +18,32 @@ local C = colors.c1
 
 local M = {}
 
+M.termcolors = function(c)
+    vim.g.terminal_color_0 = c.bg
+    vim.g.terminal_color_8 = c.gray
+
+    vim.g.terminal_color_1 = c.lred
+    vim.g.terminal_color_9 = c.dred
+
+    vim.g.terminal_color_2 = c.llyellow
+    vim.g.terminal_color_10 = c.dyellow
+
+    vim.g.terminal_color_3 = c.lorange
+    vim.g.terminal_color_11 = c.dorange
+
+    vim.g.terminal_color_4 = c.lblue
+    vim.g.terminal_color_12 = c.dblue
+
+    vim.g.terminal_color_5 = c.lmagenta
+    vim.g.terminal_color_13 = c.dmagenta
+
+    vim.g.terminal_color_6 = c.lcyan
+    vim.g.terminal_color_14 = c.dcyan
+
+    vim.g.terminal_color_7 = c.white1
+    vim.g.terminal_color_15 = c.white2
+end
+
 ---@param config Config
 ---@return Theme
 function M.setup(config)
@@ -64,18 +90,24 @@ function M.setup(config)
     Normal = { fg = c.fg, bg = config.transparent and c.none or c.bg },
     NormalNC = { fg = c.fg, bg = config.transparent and c.none or c.bg },
     NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+
     NormalFloat = { fg = c.fg, bg = c.bg_float },
-    FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
+    NvimFloat = { fg = c.lpurple, bg = c.bg_float },
+    FloatBorder = { fg = c.gray, bg = c.bg_float },
+    FloatTitle = { fg = c.green, style = "bold"},
+    FloatShadow = { fg = c.fg_dark, bg = c.black, style = "bold"},
+    FloatShadowThrough = { fg = c.gray, bg = c.black, style = "bold"},
+
     Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
     PmenuSel = { fg = c.yellow2, style = "bold"}, -- Popup menu: selected item.
     PmenuSbar = { bg = c.darkest, style = "bold"}, -- Popup menu: scrollbar.
     PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
-    QuickFixLine = { bg = c.bg_visual, style = "bold" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search = { bg = c.bg_search, style="bold"}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    IncSearch = { bg = c.bg_search, style="bold" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    QuickFixLine = { bg = c.bg_visual, fg = c.bg, style = "bold" },
+    Search = { bg = c.bg_search, fg = c.bg_dark, style="bold"},
+    IncSearch = { bg = c.bg_sel, fg = c.bg_search, style="bold" }, 
 
-    SpecialKey = { fg = c.dark3 }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+    SpecialKey = { fg = c.dark3 },
     SpellBad = { sp = c.error, style = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap = { sp = c.warning, style = "undercurl" }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = { sp = c.info, style = "undercurl" }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
@@ -101,9 +133,9 @@ function M.setup(config)
     Constant = { fg = c.purple }, -- (preferred) any constant
     String = { fg = c.green }, --   a string constant: "this is a string"
     Character = { fg = c.purple2 }, --  a character constant: 'c', '\n'
-    -- Number        = { }, --   a number constant: 234, 0xff
-    -- Boolean       = { }, --  a boolean constant: TRUE, false
-    -- Float         = { }, --    a floating point constant: 2.3e10
+    Number        = { fg = c.lpurple }, --   a number constant: 234, 0xff
+    Boolean       = { fg = c.purple, style = "bold"}, --  a boolean constant: TRUE, false
+    Float         = {  fg = c.dpurple}, --    a floating point constant: 2.3e10
 
     Identifier = { fg = c.orange }, -- , style = config.variableStyle }, -- (preferred) any variable name
     Function = { fg = c.yellow }, -- , style = config.functionStyle }, -- function name (also: methods for classes)
@@ -111,16 +143,16 @@ function M.setup(config)
 
     Statement = { fg = c.yellow }, -- (preferred) any statement
     -- Conditional   = { }, --  if, then, else, endif, switch, etc.
-    -- Repeat        = { }, --   for, do, while, etc.
+    Repeat        = { fg = c.orange, style = "italic" }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
     Operator = { fg = C.operator, }, -- "sizeof", "+", "*", etc.
     Keyword = { fg = c.purple}, -- style = config.keywordStyle }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
     PreProc = { fg = c.llyellow , style = "italic"}, -- (preferred) generic Preprocessor
-    -- Include       = { }, --  preprocessor #include
-    -- Define        = { }, --   preprocessor #define
-    -- Macro         = { }, --    same as Define
+    Include       = { fg = c.llyellow, style = "italic" }, --  preprocessor #include
+    Define        = { fg = c.lcyan, style = "bold" }, --   preprocessor #define
+    Macro         = { fg = c.lblue, style = "bold"}, --    same as Define
     -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
 
     Type      = { fg = c.orange }, -- (preferred) int, long, char, etc.
@@ -521,13 +553,13 @@ function M.setup(config)
     TelescopePromptTitle = { fg = c.orange1, bg = c.bg },
 
     -- NvimTree
-    NvimTreeNormal = { fg = c.fg_gray, bg = c.bg_sidebar },
+    NvimTreeNormal = { fg = c.fg_gray, bg = c.darkest },
     NvimTreeSignColumn = { fg = c.gray, bg=c.black},
     NvimTreeWindowPicker = { bg=c.bg_sel},
     NvimTreeOpenedFolderName = { fg = c.green2, style="bold", },
     NvimTreeFolderIcon = { fg = c.orange2, style="bold", },
     NvimTreeEmptyFolderName = { fg = c.yellow, style="italic"},
-    NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+    NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.darkest },
     NvimTreeRootFolder = { fg = c.green, style = "bold" },
     NvimTreeGitDirty = { fg = c.git.change },
     NvimTreeGitNew = { fg = c.git.add },
@@ -572,15 +604,15 @@ function M.setup(config)
     DiagnosticWarning = { link = "DiagnosticWarn" },
     DiagnosticInformation = { link = "DiagnosticInfo" },
 
-    LspFloatWinNormal = { bg = c.bg_float },
-    LspFloatWinBorder = { fg = c.border_highlight },
-    LspSagaBorderTitle = { fg = c.cyan },
+    LspFloatWinNormal = { bg = c.bg_float , },
+    LspFloatWinBorder = { fg = c.blue },
+    LspSagaBorderTitle = { fg = c.lpurple, style = "bold"},
     LspSagaHoverBorder = { fg = c.blue },
     LspSagaRenameBorder = { fg = c.green },
     LspSagaDefPreviewBorder = { fg = c.green },
     LspSagaCodeActionBorder = { fg = c.blue },
     LspSagaFinderSelection = { fg = c.bg_visual },
-    LspSagaCodeActionTitle = { fg = c.blue1 },
+    LspSagaCodeActionTitle = { fg = c.lblue, style = "bold" },
     LspSagaCodeActionContent = { fg = c.purple },
     LspSagaSignatureHelpBorder = { fg = c.red },
     ReferencesCount = { fg = c.purple },
@@ -594,12 +626,44 @@ function M.setup(config)
     healthSuccess = { fg = c.green1 },
     healthWarning = { fg = c.warning },
 
+
+    AerialLine = {bg = c.bg_sel, style = "bold" },
+    AerialInterface = { fg = c.cyan },
+    AerialLineNr = { bg = c.bg_visual, fg = c.lorange },
+    AerialStruct = { fg = c.dorange, style = "bold"},
+    AerialNull = { fg = c.purple },
+    AerialEvent = { fg = c.lmagenta },
+    AerialOperator = { fg = c.red },
+    AerialNumber= { fg = c.dpurple},
+    AerialNamespace= { fg = c.dpurple},
+    AerialModule= { fg = c.dyellow},
+    AerialPackage= { fg = c.lorange},
+    AerialString= { fg = c.lgreen, style = "italic"},
+    AerialObject= { fg = c.lmagenta},
+    AerialFunction = { fg = c.yellow},
+    AerialConstant = { fg = c.lpurple},
+    AerialField = { fg = c.blue},
+    AerialEnum = { fg = c.dorange},
+    AerialEnumMember = { fg = c.lorange},
+    AerialBoolean = { fg = c.purple},
+    AerialClass = { fg = c.yellow, style = "bold"},
+    AerialMethod = { fg = c.lred},
+    AerialVariable= { fg = c.lpurple},
+    AerialProperty= { fg = c.lblue},
+    AerialTypeParameter= { fg = c.lcyan},
+    AerialKey= { fg = c.red},
+    AerialFile = { fg = c.dorange  },
+    AerialArray = { fg=c.dcyan},
+
     -- BufferLine
     BufferLinePick  = { fg = c.yellow, style = "bold"};
     BufferLinePickVisible  = { fg = c.imagneta, style = "bold"};
     BufferLineModified = { fg = c.green };
     BufferLineHintDiagnostic = { fg = c.dcyan };
     BufferLineInfoDiagnostic = { fg = c.blue };
+    BufferLineError = { fg = c.red },
+    BufferLineInfo = { fg=c.blue },
+    BufferLineWarning = { fg=c.yellow },
     BufferLineErrorSelected = { fg = c.dred, style = "bold" };
     BufferLineFill = { bg = c.black },
     BufferLineBufferSelected = { fg = c.lgreen};
@@ -710,30 +774,6 @@ function M.setup(config)
 
   }
 
-  vim.g.terminal_color_0 = c.bg
-  vim.g.terminal_color_8 = c.gray
-
-  vim.g.terminal_color_1 = c.lred
-  vim.g.terminal_color_9 = c.dred
-
-  vim.g.terminal_color_2 = c.llyellow
-  vim.g.terminal_color_10 = c.dyellow
-
-  vim.g.terminal_color_3 = c.lorange
-  vim.g.terminal_color_11 = c.dorange
-
-  vim.g.terminal_color_4 = c.lblue
-  vim.g.terminal_color_12 = c.dblue
-
-  vim.g.terminal_color_5 = c.lmagenta
-  vim.g.terminal_color_13 = c.dmagenta
-
-  vim.g.terminal_color_6 = c.lcyan
-  vim.g.terminal_color_14 = c.dcyan
-
-  vim.g.terminal_color_7 = c.white1
-  vim.g.terminal_color_15 = c.white2
-
 
 ------ LATEX ------
 -- vim.api.nvim_set_hl(0, 'latexTSComment', {})
@@ -806,32 +846,39 @@ function M.setup(config)
 -- vim.api.nvim_set_hl(0, 'pythonTSVariable', {})
 -- vim.api.nvim_set_hl(0, 'pythonTSVariableBuiltin', {})
   theme.defer = {}
-  hilink('AerialArrayIcon', 'Constant')
-  hilink('AerialBooleanIcon', 'Boolean')
-  hilink('AerialClassIcon', 'Type')
-  hilink('AerialConstantIcon', 'Constant')
-  hilink('AerialConstructorIcon', 'TSConstructor')
-  hilink('AerialEnumIcon', 'Type')
-  hilink('AerialEnumMemberIcon','TSField')
-  hilink('AerialEventIcon', 'Type')
-  hilink('AerialFieldIcon', 'String')
-  hilink('AerialFileIcon', 'Include')
-  hilink('AerialFunctionIcon', 'Function')
-  hilink('AerialInterfaceIcon', 'Type')
-  hilink('AerialKeyIcon', 'Type')
-  hilink('AerialMethodIcon', 'TSMethod')
-  hilink('AerialModuleIcon', 'Include')
-  hilink('AerialNamespaceIcon', 'TSNamespace')
-  hilink('AerialNullIcon', 'Type')
-  hilink('AerialNumberIcon', 'Number')
-  hilink('AerialObjectIcon', 'TSField')
-  hilink('AerialOperatorIcon', '')
-  hilink('AerialPackageIcon', 'Include')
-  hilink('AerialPropertyIcon', 'TSProperty')
-  hilink('AerialStringIcon', 'String')
-  hilink('AerialStructIcon', 'TSField')
-  hilink('AerialTypeParameterIcon', 'TSParameter' )
-  hilink('AerialVariableIcon', 'TSVariableBuiltin' )
+  -- hilink('AerialArrayIcon', 'Constant')
+  -- hilink('AerialBooleanIcon', 'Boolean')
+  -- hilink('AerialClassIcon', 'Type')
+  -- hilink('AerialConstantIcon', 'Constant')
+  -- hilink('AerialConstructorIcon', 'TSConstructor')
+  -- hilink('AerialEnumIcon', 'Type')
+  -- hilink('AerialEnumMemberIcon','TSField')
+  -- hilink('AerialEventIcon', 'Type')
+  -- hilink('AerialFieldIcon', 'String')
+  -- hilink('AerialFileIcon', 'Include')
+  -- hilink('AerialFunctionIcon', 'Function')
+  -- hilink('AerialInterfaceIcon', 'Type')
+  -- hilink('AerialKeyIcon', 'Type')
+  -- hilink('AerialMethodIcon', 'TSMethod')
+  -- hilink('AerialModuleIcon', 'Include')
+  -- hilink('AerialNamespaceIcon', 'TSNamespace')
+  -- hilink('AerialNullIcon', 'Type')
+  -- hilink('AerialNumberIcon', 'Number')
+  -- hilink('AerialObjectIcon', 'TSField')
+  -- hilink('AerialOperatorIcon', 'TSConstructor')
+  -- hilink('AerialPackageIcon', 'Include')
+  -- hilink('AerialPropertyIcon', 'TSProperty')
+  -- hilink('AerialStringIcon', 'String')
+  -- hilink('AerialStructIcon', 'TSField')
+  -- hilink('AerialTypeParameterIcon', 'TSParameter' )
+  -- hilink('AerialVariableIcon', 'TSVariableBuiltin' )
+  
+
+
+  -- hilink("LspSagaFinderSelection", "Search")
+  -- hilink("LspSagaFinderSelection", "guifg='#ff0000' guibg='#00ff00")
+  --
+  M.termcolors(c)
 
   if config.hideInactiveStatusline then
     local inactive = { style = "underline", bg = c.bg, fg = c.bg, sp = c.border }

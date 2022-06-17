@@ -3,8 +3,12 @@ local theme = require("cayu.theme")
 
 local M = {}
 
-function M.colorscheme()
+M.colorscheme = function()
   util.load(theme.setup())
+end
+
+M.colors = function()
+
 end
 
 return M
