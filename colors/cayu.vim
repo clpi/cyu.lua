@@ -1,3 +1,3 @@
-lua package.loaded['cyu.config'] = nil
+lua package.loaded['cayu.config'] = nil
 
-lua require('cyu').colorscheme()
+lua require('cayu').colorscheme()

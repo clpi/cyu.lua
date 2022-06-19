@@ -7,6 +7,10 @@ M.colorscheme = function()
   util.load(theme.setup())
 end
 
+M.tcolors = function()
+  return theme.termcolors(require("cayu.colors"))
+end 
+
 M.colors = function()
 
 end
