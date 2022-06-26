@@ -99,84 +99,139 @@ function M.setup(config)
 
   colors = {
     none = "NONE",
-    -- bg = "#141a24",
-    bg = "#171c26",
-    terminal_black = "#141a24",
-    bg_highlight = "#242b39",
-    bg_sel = "#302e50",
+    bg_darker = "#141a24",
+    bg_dark   = "#151a22",
+    bg        = "#171c26",
+    bg_lite   = "#202630",
+    bg_hi     = "#242b39",
+    bg_sel    = "#303a4f",
     bg_search = "#404e6a",
-    dark4 = "#202630",
-    comment = "#526370",
-    dark3= "#677380",
-    dark5= "#607080",
 
-    fg             = "#d9d7ce",
-    fg_dark        = "#adb6be",
     fg_darkest     = "#4d525a",
-    gray           = "#556575",
-    fg_gray        = "#c3c0ba",
-    bg_dark        = "#151a22",
-
     fg_gutter      = "#343f4c",
     fg_gutter_light= "#4d4751",
 
+    gray1   = "#677380",
+    gray2   = "#607080",
+    comment = "#526370",
+
+    fg             = "#d9d7ce",
+    fg_gray        = "#c3c0ba",
+    fg_dark        = "#adb6be",
+    gray           = "#556575",
 
 
 
 
+
+
+    blue0    = "#bfdfff",
     blue1    = "#aacfff",
     blue2    = "#9abff0",
-    blue3    = "#7fa0ea",
-    blue4    = "#6a90df",
+    blue3    = "#90b0ea",
+    blue4    = "#8aa0e8",
+    blue5    = "#7a9ae4",
+    blue6    = "#6a90df",
+    lllblue = blue0,
+    llblue = blue1,
+    lblue  = blue2,
+    blue   = blue3,
+    dblue  = blue4,
+    ddblue = blue5,
+    dddblue= blue6,
 
+    lllcyan  = "#bfFFF0",
+    llcyan   = "#90FFF0",
     cyan1    = "#8feaef",
     cyan2    = "#7fd0da",
     cyan3    = "#5fc0cf",
+    lcyan    = cyan1,
+    cyan     = cyan2,
+    dcyan    = cyan3,
 
+    lteal    = "#aaffbf",
     teal1    = "#9aeaaf",
     teal2    = "#7fd0aa",
     teal3    = "#60c09f",
+    teal4    = "#5ab08a",
+    teal     = teal1,
+    dteal    = teal2,
+    ddteal   = teal3,
+    dddteal  = teal4,
 
+    lgreen   = "#daffaa",
     green1   = "#d5ff80",
     green2   = "#c0fa70",
     green3   = "#aff060",
+    dddgreen = "#8ae050",
+    green    = green1,
+    dgreen   = green2,
+    ddgreen  = green3,
 
+    lllyellow= "#ffeacf",
+    llyellow = "#ffda9f",
     yellow0  = "#ffda8f",
-    yellow1  = "#ffca6f",
+    yellow1  = "#ffcf7f",
     yellow2  = "#f0ba5f",
     yellow3  = "#eaaa5a",
+    lyellow  = yellow0,
+    yellow   = yellow1,
+    dyellow  = yellow2,
+    ddyellow = yellow3,
 
+    llorange = "#ffda8f",
+    lorange  = "#ffc070",
     orange1  = "#ffaf6f",
     orange2  = "#f09a5f",
     orange3  = "#ea8f5a",
+    orange   = orange1,
+    dorange  = orange2,
+    ddorange = orange3,
 
+    llred    = "#ffbfbf",
+    lred     = "#ffacac",
     red1     = "#ff9a9f",
     red2     = "#fa8a8f",
     red3     = "#f07a6f" ,
+    red      = red1,
+    dred     = red2,
+    ddred    = red3,
 
+    magenta0 = "#faacda", -- @
     magenta1 = "#fa9aca", -- @
     magenta2 = "#fa9aca", -- @
     magenta3 = "#f080ba", -- @
     magenta4 = "#ea70aa", -- @
+    lmagenta = magenta0,
+    magenta = magenta1,
+    dmagenta = magenta2,
+    ddmagenta = magenta3,
+    dddmagenta = magenta4,
 
+
+    llpurple = "#f0caff",
+    lpurple  = "#dfbfff",
     purple1  = "#cfafff",
-    purple2  = "#b0a0fa",
-    purple3  = "#aa90ef",
-    purple4  = "#a09aea",
+    purple3  = "#baa0fa",
+    purple4  = "#9f90e0",
+    purple = purple1,
+    dpurple = purple2,
+    ddpurple = purple3,
+    dddpurple = purple4,
 
     white1   = "#faf7ea",
     white2   = "#d9d7ce",
 
     git = {
-      change   = "#95e6cb",
-      add      = "#bbe67e",
-      delete   = "#ff90a0",
-      conflict = "#bb7a61"
+      change   = "#a5e0da",
+      add      = "#a5fa8a",
+      delete   = "#ff908a",
+      conflict = "#f0af8f"
     },
     gitSigns = { 
-      add    = "#cce78e",
-      change = "#95e6bb",
-      delete = "#ff90a0"
+      add    = "#a5fa8a",
+      change = "#a5e0da",
+      delete = "#fa8a8a"
     },
   }
   util.bg = colors.bg
@@ -200,46 +255,6 @@ function M.setup(config)
   colors.border_highlight = colors.blue1
   colors.border = colors.black
 
-    colors.blue     = colors.blue2
-    colors.lblue    = colors.blue1
-    colors.dblue    = colors.blue3
-    colors.ddblue   = colors.blue4
-
-    colors.cyan     = colors.cyan2
-    colors.lcyan    = colors.cyan1
-    colors.dcyan    = colors.cyan3
-
-    colors.teal     = colors.teal2
-    colors.lteal     = colors.teal1
-    colors.dteal     = colors.teal3
-
-    colors.green    = colors.green2
-    colors.dgreen   = colors.green3
-    colors.lgreen   = colors.green1
-
-    colors.yellow   = colors.yellow1
-    colors.dyellow  = colors.yellow2
-    colors.ddyellow = colors.yellow3
-    colors.lyellow  = colors.yellow0
-    colors.llyellow  = "#ffeaaf"
-
-    colors.orange   = colors.orange2
-    colors.dorange  = colors.orange3
-    colors.lorange  = colors.orange1
-
-    colors.red      = colors.red2
-    colors.dred     = colors.red3
-    colors.lred     = colors.red1
-
-    colors.magenta  = colors.magenta2
-    colors.dmagenta = colors.magenta3
-    colors.ddmagenta= colors.magenta4
-    colors.lmagenta = colors.magenta1
-
-    colors.purple   = colors.purple2
-    colors.lpurple  = colors.purple1
-    colors.dpurple = colors.purple3
-    colors.ddpurple = colors.purple4
   -- Popups and statusline always get a dark background
   colors.bg_popup = colors.fg_gutter
   colors.bg_statusline = colors.black
