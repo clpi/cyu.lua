@@ -120,104 +120,63 @@ function M.setup(config)
     fg_dark        = "#adb6be",
     gray           = "#556575",
 
-
-
-
-
-
-    blue0    = "#bfdfff",
-    blue1    = "#aacfff",
-    blue2    = "#9abff0",
-    blue3    = "#90b0ea",
-    blue4    = "#8aa0e8",
-    blue5    = "#7a9ae4",
-    blue6    = "#6a90df",
-    lllblue = blue0,
-    llblue = blue1,
-    lblue  = blue2,
-    blue   = blue3,
-    dblue  = blue4,
-    ddblue = blue5,
-    dddblue= blue6,
+    lllblue    = "#bfdfff",
+    llblue    = "#aacfff",
+    lblue    = "#9abff0",
+    blue    = "#90b0ea",
+    dblue    = "#8aa0e8",
+    ddblue    = "#7a9ae4",
+    dddblue    = "#6a90df",
 
     lllcyan  = "#bfFFF0",
     llcyan   = "#90FFF0",
-    cyan1    = "#8feaef",
-    cyan2    = "#7fd0da",
-    cyan3    = "#5fc0cf",
-    lcyan    = cyan1,
-    cyan     = cyan2,
-    dcyan    = cyan3,
+    lcyan    = "#8feaef",
+    cyan    = "#7fd0da",
+    dcyan    = "#5fc0cf",
 
-    lteal    = "#aaffbf",
-    teal1    = "#9aeaaf",
-    teal2    = "#7fd0aa",
-    teal3    = "#60c09f",
-    teal4    = "#5ab08a",
-    teal     = teal1,
-    dteal    = teal2,
-    ddteal   = teal3,
-    dddteal  = teal4,
+    llteal    = "#aaffbf",
+    lteal    = "#9aeaaf",
+    teal    = "#7fd0aa",
+    dteal    = "#60c09f",
+    ddteal    = "#5ab08a",
 
     lgreen   = "#daffaa",
-    green1   = "#d5ff80",
-    green2   = "#c0fa70",
-    green3   = "#aff060",
+    green   = "#d5ff80",
+    dgreen   = "#c0fa70",
+    ddgreen   = "#aff060",
     dddgreen = "#8ae050",
-    green    = green1,
-    dgreen   = green2,
-    ddgreen  = green3,
 
     lllyellow= "#ffeacf",
     llyellow = "#ffda9f",
-    yellow0  = "#ffda8f",
-    yellow1  = "#ffcf7f",
-    yellow2  = "#f0ba5f",
-    yellow3  = "#eaaa5a",
-    lyellow  = yellow0,
-    yellow   = yellow1,
-    dyellow  = yellow2,
-    ddyellow = yellow3,
+    lyellow  = "#ffda8f",
+    yellow  = "#ffcf7f",
+    dyellow  = "#f0ba5f",
+    ddyellow  = "#eaaa5a",
 
     llorange = "#ffda8f",
     lorange  = "#ffc070",
-    orange1  = "#ffaf6f",
-    orange2  = "#f09a5f",
-    orange3  = "#ea8f5a",
-    orange   = orange1,
-    dorange  = orange2,
-    ddorange = orange3,
+    orange  = "#ffaf6f",
+    dorange  = "#f09a5f",
+    ddorange  = "#ea8f5a",
 
     llred    = "#ffbfbf",
     lred     = "#ffacac",
-    red1     = "#ff9a9f",
-    red2     = "#fa8a8f",
-    red3     = "#f07a6f" ,
-    red      = red1,
-    dred     = red2,
-    ddred    = red3,
+    red     = "#ff9a9f",
+    dred     = "#fa8a8f",
+    ddred     = "#f07a6f" ,
 
-    magenta0 = "#faacda", -- @
-    magenta1 = "#fa9aca", -- @
-    magenta2 = "#fa9aca", -- @
-    magenta3 = "#f080ba", -- @
-    magenta4 = "#ea70aa", -- @
-    lmagenta = magenta0,
-    magenta = magenta1,
-    dmagenta = magenta2,
-    ddmagenta = magenta3,
-    dddmagenta = magenta4,
+    llmagenta = "#faacda", -- @
+    lmagenta = "#fa9aca", -- @
+    magenta = "#fa9aca", -- @
+    dmagenta = "#f080ba", -- @
+    ddmagenta = "#ea70aa", -- @
 
 
     llpurple = "#f0caff",
     lpurple  = "#dfbfff",
-    purple1  = "#cfafff",
-    purple3  = "#baa0fa",
-    purple4  = "#9f90e0",
-    purple = purple1,
-    dpurple = purple2,
-    ddpurple = purple3,
-    dddpurple = purple4,
+    purple  = "#cfafff",
+    dpurple  = "#baa0fa",
+    ddpurple  = "#9f90e0",
 
     white1   = "#faf7ea",
     white2   = "#d9d7ce",
@@ -233,25 +192,17 @@ function M.setup(config)
       change = "#a5e0da",
       delete = "#fa8a8a"
     },
+    diff = {
+      add      = "#a5fa8a",
+      change   = "#a5e0da",
+      delete   = "#ff908a",
+    }
   }
   util.bg = colors.bg
   util.day_brightness = config.dayBrightness
 
-  colors.diff = {
-    add = util.darken(colors.green2, 0.15),
-    delete = util.darken(colors.red1, 0.15),
-    change = util.darken(colors.blue2, 0.15),
-    text = colors.blue7,
-  }
-
-  colors.gitSigns = {
-    add = util.brighten(colors.gitSigns.add, 0.2),
-    change = util.brighten(colors.gitSigns.change, 0.2),
-    delete = util.brighten(colors.gitSigns.delete, 0.2),
-  }
-
-  colors.git.ignore = colors.dark3
-  colors.black = util.darken(colors.bg, 0.8, "#000000")
+  colors.git.ignore = colors.gray
+  colors.black = colors.bg_darker
   colors.border_highlight = colors.blue1
   colors.border = colors.black
 
@@ -263,14 +214,14 @@ function M.setup(config)
   colors.bg_sidebar = (config.transparentSidebar and colors.none) or config.darkSidebar and colors.bg_dark or colors.bg
   colors.bg_float = config.darkFloat and colors.bg_dark or colors.bg
 
-  colors.bg_visual = util.darken(colors.blue1, 0.7)
+  colors.bg_visual = colors.dblue
   -- colors.bg_search = colors.blue1
   colors.fg_sidebar = colors.fg_dark
 
-  colors.error = colors.red1
-  colors.warning = colors.yellow1
-  colors.info = colors.blue2
-  colors.hint = colors.teal1
+  colors.error = colors.lred
+  colors.warning = colors.orange
+  colors.info = colors.blue
+  colors.hint = colors.lteal
 
   util.color_overrides(colors, config)
 

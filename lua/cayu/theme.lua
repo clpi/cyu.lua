@@ -58,12 +58,12 @@ function M.setup(config)
   theme.base = {
     Comment = { fg = c.comment, style = config.commentStyle },
     ColorColumn = { bg = c.black },
-    Conceal = { fg = c.dark5 },
+    Conceal = { fg = c.gray2 },
     Cursor = { fg = c.bg, bg = c.fg },
     lCursor = { fg = c.bg, bg = c.fg },
     CursorIM = { fg = c.bg, bg = c.fg },
-    CursorColumn = { bg = c.bg_highlight },
-    CursorLine = { bg = c.bg_highlight },
+    CursorColumn = { bg = c.bg_hi },
+    CursorLine = { bg = c.bg_hi },
     Directory = { fg = c.orange },
     DiffAdd = { bg = c.diff.add },
     DiffChange = { bg = c.diff.change },
@@ -80,7 +80,7 @@ function M.setup(config)
     SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
     Substitute = { bg = c.red, fg = c.black }, -- |:substitute| replacement text highlighting
     LineNr = { fg = c.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    MatchParen = { fg = c.yellow, bg=c.bg_highlight, style = "bold" },
+    MatchParen = { fg = c.yellow, bg=c.bg_hi, style = "bold" },
     CursorLineNr = { fg = c.orange1 },
     ModeMsg = { fg = c.fg_dark, style = "bold" },
     MsgArea = { fg = c.fg_dark },
@@ -178,7 +178,7 @@ function M.setup(config)
     Todo = { bg = c.none, fg = c.yellow , style="bold"}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Note = { bg = c.none, fg=c.yellow,style="bold"},
 
-    qfLineNr = { fg = c.dark5 },
+    qfLineNr = { fg = c.gray2 },
     qfFileName = { fg = c.purple },
 
     cString = { fg = c.green, style = "italic" },
@@ -219,7 +219,7 @@ function M.setup(config)
 
 
     debugPC = { bg = c.bg_sidebar }, -- used for highlighting the current line in terminal-debug
-    debugBreakpoint = { bg = util.darken(c.info, 0.1), fg = c.info }, -- used for breakpoint colors in terminal-debug
+    debugBreakpoint = { bg = c.ddblue,  fg = c.info }, -- used for breakpoint colors in terminal-debug
 
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
@@ -235,10 +235,10 @@ function M.setup(config)
     DiagnosticInfo = { fg = c.info }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
     DiagnosticHint = { fg = c.hint }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-    DiagnosticVirtualTextError = { bg = util.darken(c.error, 0.1), fg = c.error }, -- Used for "Error" diagnostic virtual text
-    DiagnosticVirtualTextWarn = { bg = util.darken(c.warning, 0.1), fg = c.warning }, -- Used for "Warning" diagnostic virtual text
-    DiagnosticVirtualTextInfo = { bg = util.darken(c.info, 0.1), fg = c.info }, -- Used for "Information" diagnostic virtual text
-    DiagnosticVirtualTextHint = { bg = util.darken(c.hint, 0.1), fg = c.hint }, -- Used for "Hint" diagnostic virtual text
+    DiagnosticVirtualTextError = { bg = c.dred,  fg = c.error }, -- Used for "Error" diagnostic virtual text
+    DiagnosticVirtualTextWarn = { bg = c.dorange,  fg = c.warning }, -- Used for "Warning" diagnostic virtual text
+    DiagnosticVirtualTextInfo = { bg = c.dteal,  fg = c.info }, -- Used for "Information" diagnostic virtual text
+    DiagnosticVirtualTextHint = { bg = c.dblue,  fg = c.hint }, -- Used for "Hint" diagnostic virtual text
 
     DiagnosticUnderlineError = { style = "undercurl", sp = c.error }, -- Used to underline "Error" diagnostics
     DiagnosticUnderlineWarn = { style = "undercurl", sp = c.warning }, -- Used to underline "Warning" diagnostics
@@ -423,7 +423,7 @@ function M.setup(config)
     Vimwikibred     = { fg = c.lred   , bg = c.none};
     -- VimwikiTag     = { fg = c.magenta , style = "bold"};
     VimwikiTag     = { fg = c.lred , style = "bold"};
-    Vimwikigray    = { fg=c.dark5, bg = c.none};
+    Vimwikigray    = { fg=c.gray2, bg = c.none};
     Vimwikibgray    = { fg=c.dark3, bg = c.none};
     VimwikiCode    = { fg=c.lpurple };
     VimwikiCodeT   = { fg = c.lpurple , style = "italic"};
@@ -520,9 +520,9 @@ function M.setup(config)
     -- Neogit
     NeogitBranch = { fg = c.magenta },
     NeogitRemote = { fg = c.purple },
-    NeogitHunkHeader = { bg = c.bg_highlight, fg = c.fg },
+    NeogitHunkHeader = { bg = c.bg_hi, fg = c.fg },
     NeogitHunkHeaderHighlight = { bg = c.fg_gutter, fg = c.blue },
-    NeogitDiffContextHighlight = { bg = util.darken(c.fg_gutter, 0.5), fg = c.fg_dark },
+    NeogitDiffContextHighlight = { bg = c.bg_darker,fg = c.fg_dark },
     NeogitDiffDeleteHighlight = { fg = c.git.delete, bg = c.diff.delete },
     NeogitDiffAddHighlight = { fg = c.git.add, bg = c.diff.add },
 
@@ -569,7 +569,7 @@ function M.setup(config)
     NvimTreeImageFile = { fg = c.fg_sidebar },
     NvimTreeSymlink = { fg = c.blue1 , style = "italic"},
     NvimTreeVertSplit = { fg = c.comment },
-    NvimTreeCursorLine = { bg = c.bg_highlight},
+    NvimTreeCursorLine = { bg = c.bg_hi},
     NvimTreeFolderName = { fg = c.yellow},--, style = "bold" },
     -- NvimTreeFolderName = { fg = c.purple},--, style = "bold" },
 
@@ -670,7 +670,7 @@ function M.setup(config)
     BufferLineBuffer = { fg = c.gray };
     BufferLineTabSelected = { fg = c.orange, style = "bold"};
     BufferLineWarningSelected = { fg = c.yellow, style = "bold"};
-    BufferLineNumbersSelected = { fg = c.green, bg = c.bg_highlight, style = "bold"};
+    BufferLineNumbersSelected = { fg = c.green, bg = c.bg_hi, style = "bold"};
     BufferLineIndicatorSelected = { fg = c.lgreen, bg = c.none, style = "bold"};
 
     -- Barbar
@@ -684,25 +684,25 @@ function M.setup(config)
     BufferVisibleMod = { bg = c.bg_statusline, fg = c.warning },
     BufferVisibleSign = { bg = c.bg_statusline, fg = c.info },
     BufferVisibleTarget = { bg = c.bg_statusline, fg = c.red },
-    BufferInactive = { bg = c.bg_statusline, fg = c.dark5 },
-    BufferInactiveIndex = { bg = c.bg_statusline, fg = c.dark5 },
-    BufferInactiveMod = { bg = c.bg_statusline, fg = util.darken(c.warning, 0.7) },
+    BufferInactive = { bg = c.bg_statusline, fg = c.gray2 },
+    BufferInactiveIndex = { bg = c.bg_statusline, fg = c.gray2 },
+    BufferInactiveMod = { bg = c.bg_statusline, fg = c.ddorange,},
     BufferInactiveSign = { bg = c.bg_statusline, fg = c.border_highlight },
     BufferInactiveTarget = { bg = c.bg_statusline, fg = c.red },
     BufferTabpages = { bg = c.bg_statusline, fg = c.none },
     BufferTabpage = { bg = c.bg_statusline, fg = c.border_highlight },
 
     -- Sneak
-    Sneak = { fg = c.bg_highlight, bg = c.magenta },
+    Sneak = { fg = c.bg_hi, bg = c.magenta },
     SneakScope = { bg = c.bg_visual },
 
     -- Hop
     HopNextKey = { fg = c.magenta2, style = "bold" },
     HopNextKey1 = { fg = c.blue2, style = "bold" },
-    HopNextKey2 = { fg = util.darken(c.blue2, 0.3), style = "bold" },
+    HopNextKey2 = { fg = c.ddblue, style = "bold" },
     HopUnmatched = { fg = c.dark3 },
 
-    LightspeedGreyWash = { fg = c.dark3 },
+    LightspeedGreyWash = { fg = c.fg_dark },
     -- LightspeedCursor = { link = "Cursor" },
     LightspeedLabel = { fg = c.magenta2, style = "bold,underline" },
     LightspeedLabelDistant = { fg = c.green1, style = "bold,underline" },
