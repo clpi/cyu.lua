@@ -41,34 +41,36 @@ function M.setup(config)
 
   theme.base = {
     Comment = { fg = c.comment, style = config.commentStyle },
-    ColorColumn = { bg = c.black },
+    ColorColumn = { bg = c.bg, fg = c.fg_dark },
     Conceal = { fg = c.gray2 },
-    Cursor = { fg = c.bg, bg = c.fg },
-    lCursor = { fg = c.bg, bg = c.fg },
-    CursorIM = { fg = c.bg, bg = c.fg },
+    Cursor = { fg = c.bg, bg = c.fg_gray },
+    lCursor = { fg = c.bg_sel, bg = c.fg_dark },
+    CursorIM = { fg = c.bg_lite, bg = c.fg_gray },
     CursorColumn = { bg = c.bg_hi },
     CursorLine = { bg = c.bg_hi },
-    Directory = { fg = c.orange },
-    DiffAdd = { bg = c.diff.add },
-    DiffChange = { bg = c.diff.change },
-    DiffDelete = { bg = c.diff.delete },
-    DiffText = { bg = c.diff.text },
+    Directory = { fg = c.lblue, style = "bold" },
+    DiffAdd = { bg = c.diff.add, fg = c.bg },
+    DiffChange = { bg = c.diff.change, fg = c.bg },
+    DiffDelete = { bg = c.diff.delete, fg = c.bg },
+    DiffText = { bg = c.diff.text, fg = c.fg_gray },
     EndOfBuffer = { fg = c.bg },
     -- TermCursor  = { }, -- cursor in a focused terminal
     -- TermCursorNC= { }, -- cursor in an unfocused terminal
     ErrorMsg = { fg = c.error }, -- error messages on the command line
-    VertSplit = { fg = c.border }, -- the column separating vertically split windows
-    Folded = { fg = c.blue, bg = c.fg_gutter }, -- line used for closed folds
-    FoldColumn = { bg = c.bg, fg = c.comment }, -- 'foldcolumn'
-    SignColumn = { bg = config.transparent and c.none or c.bg, fg = c.fg_gutter }, -- column where |signs| are displayed
-    SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
-    Substitute = { bg = c.red, fg = c.black }, -- |:substitute| replacement text highlighting
-    LineNr = { fg = c.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    VertSplit = { fg = c.bg_darker }, -- the column separating vertically split windows
+    Folded = { fg = c.blue, bg = c.fg_gutter }, 
+    FoldColumn = { bg = c.bg_darker, fg = c.comment }, 
+    SignColumn = { bg = config.transparent and c.none or c.bg_darker, fg = c.fg_gutter }, 
+    SignColumnSB = { bg = c.bg_darkest, fg = c.fg_gutter }, -- column where |signs| are displayed
+    Substitute = { bg = c.red, fg = c.black }, 
+    LineNr = { fg = c.fg_gutter , bg = c.bg_darkest}, 
+    LineNrAbove = { fg = c.fg_gutter_light , bg = c.darkest}, 
+    LineNrBelow = { fg = c.fg_gutter_light , bg = c.darkest}, 
     MatchParen = { fg = c.yellow, bg=c.bg_hi, style = "bold" },
-    CursorLineNr = { fg = c.orange1 },
-    ModeMsg = { fg = c.fg_dark, style = "bold" },
-    MsgArea = { fg = c.fg_dark },
-    -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
+    CursorLineNr = { fg = c.green, style = "bold", bg = c.darkest },
+    ModeMsg = { fg = c.gray2, style = "bold" },
+    MsgArea = { fg = c.gray1 },
+    MsgSeparator= { fg = c.bg_lite  }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg = { fg = c.blue },
     NonText = { fg = c.dark3 },
     Normal = { fg = c.fg, bg = config.transparent and c.none or c.bg },
@@ -82,25 +84,25 @@ function M.setup(config)
     FloatShadow = { fg = c.fg_dark, bg = c.black, style = "bold"},
     FloatShadowThrough = { fg = c.gray, bg = c.black, style = "bold"},
 
-    Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
-    PmenuSel = { fg = c.yellow2, style = "bold"}, -- Popup menu: selected item.
-    PmenuSbar = { bg = c.darkest, style = "bold"}, -- Popup menu: scrollbar.
-    PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
+    Pmenu = { bg = c.bg_lite, fg = c.fg }, -- Popup menu: normal item.
+    PmenuSel = { fg = c.yellow, style = "bold", bg=c.bg_sel }, -- Popup menu: selected item.
+    PmenuSbar = { bg = c.comment }, -- Popup menu: scrollbar.
+    PmenuThumb = { bg = c.bg_lite }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
-    QuickFixLine = { bg = c.bg_visual, fg = c.bg, style = "bold" },
-    Search = { bg = c.bg_search, fg = c.bg_dark, style="bold"},
-    IncSearch = { bg = c.bg_sel, fg = c.bg_search, style="bold" }, 
+    QuickFixLine = { bg = c.bg_hi, fg = c.white1},
+    Search = { bg = c.bg_search, fg = c.fg, style="bold"},
+    IncSearch = { bg = c.bg_sel, style="italic,bold" }, 
 
     SpecialKey = { fg = c.dark3 },
     SpellBad = { sp = c.error, style = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap = { sp = c.warning, style = "undercurl" }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = { sp = c.info, style = "undercurl" }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = { sp = c.hint, style = "undercurl" }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    StatusLine = { fg = c.fg_darkest, bg = c.black }, -- status line of current window
-    StatusLineNC = { fg = c.comment, bg = c.black }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLine = { fg = c.fg_darker, bg = c.black }, -- status line of current window
+    StatusLineNC = { fg = c.fg_dark, bg = c.black }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine = { bg = c.bg_statusline, fg = c.fg_gutter }, -- tab pages line, not active tab page label
-    TabLineFill = { bg = c.black }, -- tab pages line, where there are no labels
-    TabLineSel = { fg = c.bg, bg = c.yellow }, -- tab pages line, active tab page label
+    TabLineFill = { bg = c.black, fg = c.bg_hi }, -- tab pages line, where there are no labels
+    TabLineSel = { bg = c.bg_hi, fg = c.lgreen }, -- tab pages line, active tab page label
     Title = { fg = c.blue, style = "bold" }, -- titles for output from ":set all", ":autocmd" etc.
     Visual = { bg = c.bg_sel}, -- Visual mode selection
     VisualNOS = { bg = c.bg_visual }, -- Visual mode selection when vim is "Not Owning the Selection".
@@ -175,17 +177,24 @@ function M.setup(config)
     htmlH6 = { fg = c.yellow, style = "bold"},
 
     mkdHeading = { fg = c.orange, style = "bold" },
-    mkdCode = { bg = c.bg_darker, fg = c.fg },
-    mkdCodeDelimiter = { bg = c.bg_dark, fg = c.fg },
-    mkdCodeStart = { fg = c.teal, style = "bold" },
-    mkdCodeEnd = { fg = c.teal, style = "bold" },
+    mkdCode = { bg = c.bg_darker, fg = c.lteal, style = "italic" },
+    mkdCodeDelimiter = { bg = c.bg_dark, fg = c.magenta },
+    mkdCodeStart = { fg = c.dmagenta, },
+    mkdCodeEnd = { fg = c.ddmagenta, },
     mkdLink = { fg = c.blue, style = "underline" },
+    mkdLinkTitle = { fg = c.lblue, style = "bold"},
 
     jsonTSLabel = { fg = c.dorange },
 
+    markdownIdDeclaration = { fg = c.dpurple, style = "italic"};
+    markdownFootnoteDefinition = { fg = c.dmagenta, style = "bold" };
+
     markdownHeadingDelimiter = { fg = c.orange, style = "bold" },
-    markdownCode = { fg = c.teal },
-    markdownCodeBlock = { fg = c.teal },
+    -- markdownCode = { fg = c.dteal , style = "italic"},
+    markdownCode = { fg = c.lgreen , style = "italic"},
+    mkdQuot = { fg = c.gray2, style = "italic", bg = c.bg_sel },
+    mkdCode = { fg = c.lgreen , style = "italic"},
+    markdownCodeBlock = { fg = c.lteal },
     markdownH1 = { fg = c.magenta, style = "bold" },
     markdownH2 = { fg = c.blue, style = "bold" },
     markdownH3 = { fg = c.purple, style = "bold" },
@@ -193,6 +202,14 @@ function M.setup(config)
     markdownH5 = { fg = c.orange, style = "bold"},
     markdownH6 = { fg = c.yellow, style = "bold"},
     markdownLinkText = { fg = c.blue, style = "underline" },
+    mkdCodeDelimiter = { fg = c.magent },
+    markdownFootnote = { fg = c.cyan },
+    markdownRule = { fg = c.dorange, style = "underline"},
+    markdownUrl = { fg = c.lblue, style = "underline"},
+    markdownValid = { fg = c.hint },
+    markdownLink = { fg = c.lblue, style = "underline"},
+    markdownLinkTextDelimiter = { fg = c.dpurple };
+    markdownId  = { fg = c.lcyan },
 
     tsxTSConstructor = { fg = c.ddorange, style = "bold,italic"},
     tsxTSTagAttribute = { fg = c.dpurple, style = "italic"},
@@ -229,7 +246,7 @@ function M.setup(config)
     DiagnosticUnderlineInfo = { style = "undercurl", sp = c.info }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint = { style = "undercurl", sp = c.hint }, -- Used to underline "Hint" diagnostics
 
-    LspSignatureActiveParameter = { fg = c.orange },
+    LspSignatureActiveParameter = { fg = c.green, style = "bold" },
     LspCodeLens = { fg = c.comment },
 
     ALEErrorSign = { fg = c.error },
@@ -270,7 +287,7 @@ function M.setup(config)
     TSComment           = { fg=c.comment, style = 'italic'};    -- For comment blocks.
 
     TSWarning         = { fg = c.warning , style = "bold"},
-    TSDanger          = { fg = c.error , style = 'bold'},
+    TSDanger          = { fg = c.ddred , style = 'bold'},
     TSConstructor     = { fg = c.lyellow },
     TSConditional       = { fg=c.llred, style = "italic"};
     TSConstant          = { fg=c.llpurple};
@@ -285,18 +302,18 @@ function M.setup(config)
     TSFunction        = { fg = c.yellow, style = "italic" };
     TSFuncMacro       = { fg = c.lyellow, style = "bold"},-- style = "" };
     TSInclude         = { fg = c.yellow, style = "italic" };
-    TSKeyword         = { fg = c.lorange, style = "italic"};
-    TSKeywordFunction = { fg = c.dyellow, style ="bold"};
+    TSKeyword         = { fg = c.orange, style = "bold"};
+    TSKeywordFunction = { fg = c.lmagenta, style ="bold"};
     TSKeywordReturn = { fg = c.orange, style = "bold,italic"};
-    TSKeywordOperator = { fg = c.red}, style = "italic";
+    TSKeywordOperator = { fg = c.red, style = "italic"};
     TSLabel           = { fg = c.purple, style = 'italic' },
-    TSEnvironment     = { fg = c.teal },
-    TSEnvironmentName = { fg = c.teal, style = "italic" },
-    TSMath            = { fg = c.lmagenta },
+    TSEnvironment     = { fg = c.magenta },
+    TSEnvironmentName = { fg = c.lmagenta, style = "italic" },
+    TSMath            = { fg = c.teal, tyle = "italic" },
 
     TSMethod            = { fg=c.llorange, style="italic"},
     TSNamespace         = { fg = c.lpurple},
-    -- TSNone              = { };    2-- TODO: docs
+    TSNone              = { fg = c.fg_dark, };    
     TSNumber            = { fg=c.purple}; 
     TSOperator        = { fg = c.lred },
     TSParameter       = { fg = c.dorange }, -- For parameters of a function.
@@ -319,10 +336,12 @@ function M.setup(config)
 
     TSStorageClass = { fg = c.llcyan };
 
-    TSType            = { fg = c.llblue,};
+    TSType            = { fg = c.lblue,};
     TSTypeBuiltin     = { fg = c.cyan,style="italic" };
     TSTypeQualifier   = { fg = c.llpurple, style = "italic" };
     TSTypeDefinition  = { fg = c.lblue, style = "bold"};
+    TSDefinitionUsage = { fg = c.teal, style = "italic"};
+    TSCurrentScope    = { fg = c.llyellow, style = "italic"};
 
     TSVariable        = { fg = c.cyan }; --, style = "italic"};
     TSVariableBuiltin = { fg = c.teal , style = "italic"}, -- Variable names that are defined by the languages, like `this` or `self`.
@@ -339,7 +358,7 @@ function M.setup(config)
     TSStrike            = { style = "strikethrough" };    -- For strikethrough text.
 
     TSLiteral           = { fg = c.teal };    -- Literal text.
-    TSURI               = { fg=c.lblue, style="italic"};    -- Any URI like a link or email.
+    TSURI               = { fg=c.lblue, style="underline"};    -- Any URI like a link or email.
 
     -- BQF
     PreviewBorder       = { fg = c.gray };
@@ -349,7 +368,7 @@ function M.setup(config)
     NotifyERRORBorder= { fg = c.red },
     NotifyWARNBorder= { fg = c.yellow },
     NotifyINFOBorder={ fg = c.green },
-    NotifyDEBUGBorder={ fg = c.grey },
+    NotifyDEBUGBorder={ fg = c.bg_sel },
     NotifyTRACEBorder={ fg = c.purple },
 
     NotifyERRORIcon={ fg = c.red },
@@ -408,11 +427,11 @@ function M.setup(config)
     -- VimwikiTag     = { fg = c.magenta , style = "bold"};
     VimwikiTag     = { fg = c.lred , style = "bold"};
     Vimwikigray    = { fg=c.gray2, bg = c.none};
-    Vimwikibgray    = { fg=c.dark3, bg = c.none};
-    VimwikiCode    = { fg=c.lpurple };
+    Vimwikibgray    = { fg=c.comment, bg = c.none};
+    VimwikiCode    = { fg=c.lgreen };
     VimwikiCodeT   = { fg = c.lpurple , style = "italic"};
-    VimwikiMath    = { fg = c.yellow };
-    VimwikiMathT   = { fg = c.yellow1 };
+    VimwikiMath    = { fg = c.lcyan };
+    VimwikiMathT   = { fg = c.llyellow };
     VimwikiHTMLTag    = { fg = c.dred };
     VimwikiBoldChar   = { fg = c.lblue, style = "bold"};
     VimwikiBoldCharT   = { fg = c.blue, style = "bold"};
@@ -433,14 +452,14 @@ function M.setup(config)
     VimwikiImageChar = { fg = c.lpurple };
     VimwikiTableRow = { fg = c.lblue, };
     VimwikiEqInChar = { fg = c.magenta };
-    VimwikiCodeChar = { fg = c.dpurple };
+    VimwikiCodeChar = { fg = c.ddmagenta };
     VimwikiCodeCharT = { fg = c.lpurple };
     VimwikiDelimiter = { fg = c.dred };
     VimwikiEqInCharT = { fg = c.lmagenta };
-    VimwikiListTodo = { fg = c.lorange, };
+    VimwikiListTodo = { fg = c.dred, };
     VimwikiPreDelim = { fg = c.dmagenta, };
-    VimwikiHeaderChar = { fg = c.dyellow, style = "bold"};
-    VimwikiHeaderCharT = { fg = c.lorange, style = "italic,bold"};
+    VimwikiHeaderChar = { fg = c.dorange, style = "bold"};
+    VimwikiHeaderCharT = { fg = c.ddorange, style = "italic,bold"};
 
     VimwikiLink =    { fg = c.lblue, style = "underline"};
     VimwikiLinkT   = { fg = c.blue, style = "underline"};
@@ -481,8 +500,21 @@ function M.setup(config)
 
     -- LspTrouble
     LspTroubleText = { fg = c.fg_dark },
-    LspTroubleCount = { fg = c.magenta, bg = c.fg_gutter },
+    LspTroubleCount = { fg = c.lmagenta, bg = c.fg_gutter },
     LspTroubleNormal = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+
+    TroubleSignOther = { fg = c.purple, style = "bold"},
+    TroubleSignError = { fg = c.error, style = "bold"},
+    TroubleSignWarning = { fg = c.warning, style = "bold"},
+    TroubleSignHint = { fg = c.hint, style = "bold"},
+    TroubleSignInformation = { fg = c.info, style = "bold"},
+
+    TroubleTextHint = { fg = c.hint, style = "italic" },
+    TroubleTextWarning = { fg = c.yellow, style = "italic" },
+    TroubleTextInformation = { fg = c.info, style = "italic" },
+    TroubleWarning = { fg = c.yellow, style = "italic" },
+    TroubleTextError = { fg = c.error, style = "italic" },
+
 
     -- Illuminate
     illuminatedWord = { bg = c.fg_gutter },
@@ -499,6 +531,10 @@ function M.setup(config)
     diffLine = { fg = c.comment },
     diffIndexLine = { fg = c.magenta },
 
+    FidgetTask = { fg = c.comment };
+    FidgetTitle = { fg = c.green,  };
+
+    yamlTSField = { fg = c.lpurple, style = "italic"},
 
 
     -- Neogit
@@ -521,28 +557,37 @@ function M.setup(config)
     GitSignsDelete = { fg = c.gitSigns.delete }, -- diff mode: Deleted line |diff.txt|
 
     -- Telescope
-    TelescopeBorder = { fg = c.border_highlight, bg = c.bg_float },
-    TelescopeNormal = { fg = c.fg, bg = c.bg_float },
-    TelescopePreviewMatch = { c = c.fg, bg = c.bg },
+    TelescopeTitle = { fg = c.lorange };
+    TelescopeBorder = { fg = c.bg_sel, bg = c.none },
+    TelescopeNormal = { fg = c.fg_gray, bg = c.bg_float },
+    TelescopePreviewMatch = { c = c.lpurple, bg = c.bg_sel, style = "bold" },
 
-    TelescopePromptNormal = { fg = c.fg, bg = c.black },
-    TelescopePromptPrefix = { fg = c.magenta, bg = c.black },
-    TelescopeSelectionCaret = { fg = c.lmagenta },
-    TelescopePromptCounter = { fg = c.gray },
-    TelescopePromptBorder = { fg = c.border_highlight },
-    TelescopeSelection = { fg = c.white1, bg = c.bg_sel, style = "bold" },
-    TelescopeMatching = { fg = c.lyellow },
+    TelescopePromptNormal = { fg = c.fg_gray, bg = c.black },
+    TelescopePromptPrefix = { fg = c.green, bg = c.black, style = "bold" },
+    TelescopeResultsStruct = { fg = c.lyellow, };
+    TelescopeResultsTitle = { fg = c.lcyan, };
+    TelescopePromptTitle = { fg = c.green, bg = c.bg },
+    TelescopeSelectionCaret = { fg = c.green, style = "bold" },
+    TelescopePromptCounter = { fg = c.green },
+    TelescopePromptBorder = { fg = c.bg_sel },
+    TelescopeSelection = { fg = c.white1, bg = c.bg_sel },
+    TelescopeMatching = { fg = c.orange, style = "bold" },
     TelescopePreviewTitle = { fg = c.lyellow, bg = c.bg },
-    TelescopeResultsTitle = { fg = c.lpurple, bg = c.bg },
-    TelescopePromptTitle = { fg = c.lorange, bg = c.bg },
+    TelescopeResultMethod = { fg = c.lblue, bg = c.bg },
+    TelescopeResultsLineNr = { fg = c.gray1, bg = c.bg_lite};
+    TelescopeResultMethod = { fg = c.lorange, bg = c.bg },
+    TelescopeResultsNormal = { fg = c.fg_dark, bg = c.bg },
+    TelescopeResultsFileIcon = { fg = c.lblue, style = "bold"};
+    TelescopePreviewLink = { fg = c.lblue, style = "underline"};
 
     -- NvimTree
     NvimTreeNormal = { fg = c.fg_gray, bg = c.darkest },
     NvimTreeSignColumn = { fg = c.gray, bg=c.black},
+    NvimTreeStatusLine = { fg = c.bg_lite, bg = c.black };
+    NvimTreeStatusLineNC = { fg = c.darkest, bg = c.black };
     NvimTreeWindowPicker = { bg=c.bg_sel},
     NvimTreeOpenedFolderName = { fg = c.lgreen, style="bold", },
-    -- NvimTreeFolderIcon = { fg = c.orange2, style="bold", },
-    NvimTreeEmptyFolderName = { fg = c.yellow, style="italic"},
+    NvimTreeEmptyFolderName = { fg = c.dyellow, style="italic"},
     NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.darkest },
     NvimTreeRootFolder = { fg = c.green, style = "bold" },
     NvimTreeGitDirty = { fg = c.git.change },
@@ -551,12 +596,13 @@ function M.setup(config)
     NvimTreeSpecialFile = { fg = c.purple, style = "italic" },
     NvimTreeIndentMarker = { fg = c.gray },
     NvimTreeImageFile = { fg = c.fg_sidebar },
-    NvimTreeSymlink = { fg = c.lblue , style = "italic"},
-    NvimTreeVertSplit = { fg = c.comment },
+    NvimTreeSymlink = { fg = c.lpurple , style = "italic"},
+    NvimTreeVertSplit = { fg = c.bg_sel },
     NvimTreeCursorLine = { bg = c.bg_hi},
     NvimTreeFolderName = { fg = c.yellow},--, style = "bold" },
     NvimTreeFolderIcon = { fg = c.orange, style = "bold"},
     NvimTreeFileIcon = { fg = c.blue, style = "bold"},
+
     -- NvimTreeFolderName = { fg = c.purple},--, style = "bold" },
 
     -- Fern
@@ -590,17 +636,23 @@ function M.setup(config)
     DiagnosticWarning = { link = "DiagnosticWarn" },
     DiagnosticInformation = { link = "DiagnosticInfo" },
 
-    LspFloatWinNormal = { bg = c.bg_float , },
-    LspFloatWinBorder = { fg = c.blue },
-    LspSagaBorderTitle = { fg = c.lpurple, style = "bold"},
-    LspSagaHoverBorder = { fg = c.blue },
-    LspSagaRenameBorder = { fg = c.green },
-    LspSagaDefPreviewBorder = { fg = c.green },
-    LspSagaCodeActionBorder = { fg = c.blue },
-    LspSagaFinderSelection = { fg = c.bg_visual },
-    LspSagaCodeActionTitle = { fg = c.lblue, style = "bold" },
-    LspSagaCodeActionContent = { fg = c.purple },
-    LspSagaSignatureHelpBorder = { fg = c.red },
+    LspFloatWinNormal = { fg = c.fg_gray , bg = c.bg_darker },
+    LspFloatWinBorder = { fg = c.bg_sel },
+    LspSagaBorderTitle = { fg = c.lcyan},
+    LspSagaLightBulb = { fg = c.lcyan, },
+    LspSagaDiagnosticTruncateLine = { fg = c.bg_lite };
+    LspSagaHoverBorder = { fg = c.bg_sel },
+    LspSagaRenameBorder = { fg = c.bg_sel },
+    NotifyDEBUGBrder = { fg = c.bg_sel },
+    LspSagaDefPreviewBorder = { fg = c.bg_sel },
+    LspSagaCodeActionBorder = { fg = c.bg_sel },
+    LspSagaFinderSelection = { fg = c.dyellow, style = "bold" },
+    LspSagaCodeActionTitle = { fg = c.lorange },
+    LspSagaCodeActionContent = { fg = c.fg_dark },
+    LspSagaDiagnosticBorder = { fg = c.bg_sel },
+    LspSagaLspFinderBorder = { fg = c.bg_sel },
+    LspSagaSignatureHelpBorder = { fg = c.bg_sel },
+    -- LspagaLightbulb = { } ,
     ReferencesCount = { fg = c.purple },
     DefinitionCount = { fg = c.purple },
     DefinitionIcon = { fg = c.blue },
@@ -609,13 +661,13 @@ function M.setup(config)
 
     -- NeoVim
     healthError = { fg = c.error },
-    healthSuccess = { fg = c.green1 },
+    healthSuccess = { fg = c.green },
     healthWarning = { fg = c.warning },
 
 
     AerialLine = {bg = c.bg_sel, style = "bold" },
     AerialInterface = { fg = c.cyan },
-    AerialLineNr = { bg = c.bg_visual, fg = c.lorange },
+    AerialLineNr = { fg = c.fg_gutter },
     AerialStruct = { fg = c.dorange, style = "bold"},
     AerialNull = { fg = c.purple },
     AerialEvent = { fg = c.lmagenta },
@@ -640,6 +692,7 @@ function M.setup(config)
     AerialKey= { fg = c.red},
     AerialFile = { fg = c.dorange  },
     AerialArray = { fg=c.dcyan},
+    AerialConstructor = { fg  = c.teal };
 
     -- BufferLine
     BufferLinePick  = { fg = c.yellow, style = "bold"};
@@ -651,7 +704,7 @@ function M.setup(config)
     BufferLineInfo = { fg=c.blue },
     BufferLineWarning = { fg=c.yellow },
     BufferLineErrorSelected = { fg = c.dred, style = "bold" };
-    BufferLineFill = { bg = c.black },
+    BufferLineFill = { bg = c.bg_darker },
     BufferLineBufferSelected = { fg = c.lgreen};
     BufferLineBuffer = { fg = c.gray };
     BufferLineTabSelected = { fg = c.orange, style = "bold"};
@@ -683,70 +736,71 @@ function M.setup(config)
     SneakScope = { bg = c.bg_visual },
 
     -- Hop
-    HopNextKey = { fg = c.magenta2, style = "bold" },
-    HopNextKey1 = { fg = c.blue2, style = "bold" },
+    HopNextKey = { fg = c.magenta, style = "bold" },
+    HopNextKey1 = { fg = c.dblue, style = "bold" },
     HopNextKey2 = { fg = c.ddblue, style = "bold" },
     HopUnmatched = { fg = c.dark3 },
 
     LightspeedGreyWash = { fg = c.fg_dark },
     -- LightspeedCursor = { link = "Cursor" },
-    LightspeedLabel = { fg = c.magenta2, style = "bold,underline" },
-    LightspeedLabelDistant = { fg = c.green1, style = "bold,underline" },
+    LightspeedLabel = { fg = c.lmagenta, style = "bold,underline" },
+    LightspeedLabelDistant = { fg = c.lgreen, style = "bold,underline" },
     LightspeedLabelDistantOverlapped = { fg = c.green2, style = "underline" },
-    LightspeedLabelOverlapped = { fg = c.magenta2, style = "underline" },
+    LightspeedLabelOverlapped = { fg = c.lmagenta, style = "underline" },
     LightspeedMaskedChar = { fg = c.orange },
-    LightspeedOneCharMatch = { bg = c.magenta2, fg = c.fg, style = "bold" },
-    LightspeedPendingOpArea = { bg = c.magenta2, fg = c.fg },
-    LightspeedShortcut = { bg = c.magenta2, fg = c.fg, style = "bold,underline" },
+    LightspeedOneCharMatch = { bg = c.lmagenta, fg = c.fg, style = "bold" },
+    LightspeedPendingOpArea = { bg = c.lmagenta, fg = c.fg },
+    LightspeedShortcut = { bg = c.lmagenta, fg = c.fg, style = "bold,underline" },
     -- LightspeedShortcutOverlapped = { link = "LightspeedShortcut" },
     -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
     LightspeedUnlabeledMatch = { fg = c.blue2, style = "bold" },
 
     -- Cmp
-    CmpDocumentation = { fg = c.fg, bg = c.bg_float },
-    CmpDocumentationBorder = { fg = c.border_highlight, bg = c.bg_float },
+    CmpDocumentation = { fg = c.fg_dark, bg = c.none },
+    CmpDocumentationBorder = { fg = c.bg_sel, bg = c.bg_float },
 
-    CmpItemAbbr = { fg = c.fg_gray, bg = c.none },
-    CmpItemAbbrDefault = { fg = c.green, bg= c.none}, --, style="bold"},
-    -- CmpItemKind = { style = "bold" },
-    -- CmpItemKindColor = { style = "bold" },
+    CmpItemAbbr = { fg = c.fg_gray},
+    CmpItemAbbrDefault = { fg = c.fg_gray}, --, style="bold"},
+    CmpItemKind = { style = "bold", bg = c.black },
+    CmpItemKindDefault = { fg = c.lblue, bg = c.none}, --style="bold" },
+    CmpItemKindColor = { fg = c.magenta,  },
     cmpItemKindDefault = { fg = c.fg, bg = c.none },
     CmpItemKindFileDefault = { fg = c.yellow}, --, style="bold"},
-    CmpItemAbbrDeprecated = { fg = c.fg_gutter, bg = c.none},-- style = "strikethrough" },
+    CmpItemAbbrDeprecated = { fg = c.fg_dark, bg = c.none, style="strikethrough"},-- style = "strikethrough" },
 
-    CmpItemKindDefault = { fg = c.blue, bg = c.none}, --style="bold" },
-    CmpItemMenu = { fg = c.gray, bg = c.none },
+    CmpItemMenu = { fg = c.fg_darkest},
+    CmpItemMenuDefault = { fg = c.fg_darkest},
 
     CmpItemKindFile = { fg = c.yellow, bg = c.none },-- style="bold"},
     CmpItemKindFolder = { fg = c.blue, bg = c.none}, --style="bold"},
     CmpItemKindKeyword = { fg = c.orange, bg = c.none},-- style="bold"},
     CmpItemKindKeywordVariable = { fg = c.purple, bg = c.none }, --style="bold"},
-    CmpItemAbbrMatch = { fg = c.orange1, bg = c.none },--style = "bold"},-- style = "bold" },
-    CmpItemAbbrMatchFuzzy = { fg = c.yellow2, bg=c.none},--style = "bold" },
+    CmpItemAbbrMatch = { fg = c.orange, bg = c.none, style = "bold" },--style = "bold"},-- style = "bold" },
+    CmpItemAbbrMatchFuzzy = { fg = c.yellow, bg=c.none, style = "bold,italic"},--style = "bold" },
 
-    CmpItemKindVariable = { fg = c.blue1, bg = c.none },
-    CmpItemKindConstant = { fg = c.purple2, bg = c.none },
-    CmpItemKindReference = { fg = c.magenta2, bg = c.none },
+    CmpItemKindVariable = { fg = c.blue, bg = c.none },
+    CmpItemKindConstant = { fg = c.dpurple, bg = c.none },
+    CmpItemKindReference = { fg = c.lmagenta, bg = c.none },
     CmpItemKindValue = { fg = c.teal, bg = c.none },
 
-    CmpItemKindFunction = { fg = c.yellow, bg = c.none },
-    CmpItemKindMethod = { fg = c.yellow3, bg = c.none},-- style = "bold" },
-    CmpItemKindConstructor = { fg = c.orange2, bg = c.none}, --style = "bold" },
+    CmpItemKindFunction = { fg = c.lblue, bg = c.none },
+    CmpItemKindMethod = { fg = c.red, bg = c.none},-- style = "bold" },
+    CmpItemKindConstructor = { fg = c.blue, bg = c.none}, --style = "bold" },
 
-    CmpItemKindClass = { fg = c.orange1, bg = c.none},--, style = "bold" },
-    CmpItemKindInterface = { fg = c.yellow2, bg = c.none},--, style = "bold" },
-    CmpItemKindStruct = { fg = c.orange2, bg = c.none},--, style = "bold" },
-    CmpItemKindEvent = { fg = c.red1, bg = c.none},--, style = "bold" },
-    CmpItemKindEnum = { fg = c.purple2, bg = c.none},--, style = "bold" },
-    CmpItemKindUnit = { fg = c.magenta1, bg = c.none},--, style = "bold" },
+    CmpItemKindClass = { fg = c.lorange, bg = c.none},--, style = "bold" },
+    CmpItemKindInterface = { fg = c.yellow, bg = c.none},--, style = "bold" },
+    CmpItemKindStruct = { fg = c.orange, bg = c.none},--, style = "bold" },
+    CmpItemKindEvent = { fg = c.red, bg = c.none},--, style = "bold" },
+    CmpItemKindEnum = { fg = c.purple, bg = c.none},--, style = "bold" },
+    CmpItemKindUnit = { fg = c.magenta, bg = c.none},--, style = "bold" },
 
-    CmpItemKindModule = { fg = c.orange1, bg = c.none},--, style = "bold" },
-    CmpItemKindText = { fg = c.green3, bg=c.none},--, style = "bold" },
+    CmpItemKindModule = { fg = c.yellow, bg = c.none},--, style = "bold" },
+    CmpItemKindText = { fg = c.teal, bg=c.none},--, style = "bold" },
 
     CmpItemKindProperty = { fg = c.dblue, bg = c.none},--, style = "bold" },
     CmpItemKindField = { fg = c.lblue, bg = c.none},-- style = "bold" },
-    CmpItemKindTypeParameter = { fg = c.purple1, bg = c.none},-- style = "bold"},
-    CmpItemKindEnumMember = { fg = c.orange2, bg = c.none}, --style = "bold"},
+    CmpItemKindTypeParameter = { fg = c.lpurple, bg = c.none},-- style = "bold"},
+    CmpItemKindEnumMember = { fg = c.dorange, bg = c.none}, --style = "bold"},
     CmpItemKindOperator = { fg = c.red, bg = c.none}, --style = "bold"},
     CmpItemKindSnippet = { fg = c.purple, bg = c.none}, --style = "bold" },
 
@@ -756,7 +810,14 @@ function M.setup(config)
     bashTSFuncBuiltin = { fg = c.dorange, style = "italic,bold" },
     bashTSParameter = { fg = c.dpurple, style = "italic" },
 
-    luaTSConstructor = { fg = c.lmagenta, style = "bold"},
+    luaTSConstructor = { fg = c.magenta, style = "bold"},
+    luaTSOperator = { fg = c.red, style = "bold"},
+    luaTSParameter = { fg = c.lblue},
+    luaTSConstant = { fg = c.lpurple},
+
+    cssCustomProp = { fg = c.purple },
+    cssTransformProp = { fg = c.red},
+    cssAnimationProp = { fg = c.magenta},
 
   }
 

@@ -6,10 +6,10 @@ local cayu = {}
 
 cayu.normal = {
   a = { bg = colors.green, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.green },
+  b = { bg = colors.fg_gutter, fg = colors.dgreen },
   c = { bg = colors.bg_statusline, fg = colors.gray },
   x = { bg = colors.bg_statusline, fg = colors.gray },
-  y = { bg = colors.fg_gutter, fg = colors.green },
+  y = { bg = colors.fg_gutter, fg = colors.dgreen },
   z = { bg = colors.green, fg = colors.black },
 }
 

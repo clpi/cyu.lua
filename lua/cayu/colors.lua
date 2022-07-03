@@ -2,102 +2,12 @@ local util = require("cayu.util")
 
 local M = {}
 
-M.c1={}
-M.c2={}
-  M.c1.accent = "#FC66"
-  M.c1.bg = "#1F2430"
-  M.c1.fg = "6"
-  M.c1.ui = "#707A"
+M.colors = {}
 
-  M.c1.tag = "#CFE6"
-  M.c1.func = "#FFD580"
-  M.c1.entity = "#73D0FF"
-  M.c1.string = "#BAE67E"
-  M.c1.regexp = "#95EB"
-  M.c1.markup = "#F28779"
-  M.c1.keyword = "#FFA759"
-  M.c1.special = "#FFD580"
-  M.c1.comment = "#677380"
-  M.c1.constant = "#D4BFFF"
-  M.c1.operator = "#F29E74"
-  M.c1.error = "#FF3333"
+M.setup = function(cfg)
+  local config = cfg or require("cayu.config")
 
-  M.c1.line = "#191E2A"
-  M.c1.panel_bg = "#232834"
-  M.c1.panel_shadow = "#141925"
-  M.c1.panel_border = "#304551"
-  M.c1.gutter_normal = "#404755"
-  M.c1.gutter_active = "#5F687A"
-  M.c1.selection_bg = "#33415E"
-  M.c1.selection_inactive = "#323A"
-  M.c1.selection_border = "#232A"
-  M.c1.guide_active = "#576070"
-  M.c1.guide_normal = "#383E"
-
-  M.c1.vcs_added = "#AC70"
-  M.c1.vcs_modified = "#77A8D9"
-  M.c1.vcs_removed = "#F27983"
-
-  M.c1.vcs_added_bg = "#313D37"
-  M.c1.vcs_removed_bg = "#3E373A"
-
-  M.c1.fg_idle = "#607080"
-  M.c1.warning = "#FFA759"
-
-
-
-
-
-  M.c2.accent = "#E6B450"
-  M.c2.bg = "#0A0E14"
-  M.c2.fg = "#B3B1AD"
-  M.c2.ui = "#4D5566"
-
-  M.c2.tag = "#39BAE6"
-  M.c2.func = "#FFB454"
-  M.c2.entity = "#52FF"
-  M.c2.string = "2D9"
-  M.c2.regexp = "#95EB"
-  M.c2.markup = "#F07178"
-  M.c2.keyword = "#FF8F40"
-  M.c2.special = "#E6B673"
-  M.c2.comment = "#626A73"
-  M.c2.constant = "#FFEE99"
-  M.c2.operator = "#F29668"
-  M.c2.error = "#FF3333"
-
-  M.c2.line = "#00010A"
-  M.c2.panel_bg = "#0D1016"
-  M.c2.panel_shadow = "#00010A"
-  M.c2.panel_border = "#000000"
-  M.c2.gutter_normal = "#323945"
-  M.c2.gutter_active = "#464D5E"
-  M.c2.selection_bg = "#273747"
-  M.c2.selection_inactive = "#1B2733"
-  M.c2.selection_border = "#304357"
-  M.c2.guide_active = "#393F4D"
-  M.c2.guide_normal = "#242A35"
-
-  M.c2.vcs_added = "#91B362"
-  M.c2.vcs_modified = "#6994BF"
-  M.c2.vcs_removed = "#D975"
-
-  M.c2.vcs_added_bg = "#1D2214"
-  M.c2.vcs_removed_bg = "#2D2220"
-
-  M.c2.fg_idle = "#3E4B59"
-  M.c2.warning = "#FF8F40"
-
----@param configonfig
----@returnolorScheme
-function M.setup(config)
-  config = config or require("cayu.config")
-
-  --olor Palette
-  ---@classolorScheme
-  local colors = {}
-
-  colors = {
+  M.colors = {
     none = "NONE",
     bg_darker = "#141a24",
     bg_dark   = "#151a22",
@@ -198,38 +108,38 @@ function M.setup(config)
       delete   = "#ff908a",
     }
   }
-  util.bg = colors.bg
-  util.day_brightness = config.dayBrightness
 
-  colors.git.ignore = colors.gray
-  colors.black = colors.bg_darker
-  colors.border_highlight = colors.blue1
-  colors.border = colors.black
+  M.colors.error = M.colors.dred
+  M.colors.warning = M.colors.lorange
+  M.colors.info = M.colors.blue
+  M.colors.hint = M.colors.dteal
+
+  util.day_brightness = cfg.dayBrightness
+
+  M.colors.git.ignore = M.colors.gray
+  M.colors.black = M.colors.bg_darker
+  M.colors.border_highlight = M.colors.blue1
+  M.colors.border = M.colors.black
 
   -- Popups and statusline always get a dark background
-  colors.bg_popup = colors.fg_gutter
-  colors.bg_statusline = colors.black
+  M.colors.bg_popup = M.colors.fg_gutter
+  M.colors.bg_statusline = M.colors.black
 
   -- Sidebar and Floats are configurable
-  colors.bg_sidebar = (config.transparentSidebar and colors.none) or config.darkSidebar and colors.bg_dark or colors.bg
-  colors.bg_float = config.darkFloat and colors.bg_dark or colors.bg
+  M.colors.bg_sidebar = (cfg.transparentSidebar and M.colors.none) or cfg.darkSidebar and M.colors.bg_dark or M.colors.bg
+  M.colors.bg_float = cfg.darkFloat and M.colors.bg_dark or M.colors.bg
 
-  colors.bg_visual = colors.dblue
-  -- colors.bg_search = colors.blue1
-  colors.fg_sidebar = colors.fg_dark
+  M.colors.bg_visual = M.colors.dblue
+  -- M.colors.bg_search = M.colors.blue1
+  M.colors.fg_sidebar = M.colors.fg_dark
 
-  colors.error = colors.lred
-  colors.warning = colors.orange
-  colors.info = colors.blue
-  colors.hint = colors.lteal
+  util.color_overrides(M.colors, cfg)
 
-  util.color_overrides(colors, config)
-
-  if config.transform_colors and (config.style == "day" or vim.o.background == "light") then
-    return util.light_colors(colors)
+  if cfg.transform_colors and (cfg.style == "day" or vim.o.background == "light") then
+    return util.light_colors(M.colors)
   end
 
-  return colors
+  return M.colors
 end
 
 return M
