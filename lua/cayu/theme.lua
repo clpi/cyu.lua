@@ -1,20 +1,7 @@
-local util = require("cayu.util")
 local colors = require("cayu.colors")
-local hl = vim.api.nvim_set_hl
 local hilink = function(name, link) 
-  hl(0, name, { link = link })
+  vim.api.nvim_set_hl(0, name, { link = link })
 end
--- @NOTE: applies no fg or bg colors , only style
-local style = function(name, style)
-  
-
-end
-local color = function(name, fg, bg, style)
-  if name and fg and bg and style then 
-    hl(0, name, { fg = fg, bg = bg, style = style})
-  end
-end
-local C = colors.c1
 
 local M = {}
 
@@ -44,12 +31,9 @@ M.termcolors = function(c)
     vim.g.terminal_color_15 = c.white2
 end
 
----@param config Config
----@return Theme
 function M.setup(config)
   config = config or require("cayu.config")
 
-  ---@class Theme
   local theme = {}
   theme.config = config
   theme.colors = colors.setup(config)
@@ -132,7 +116,7 @@ function M.setup(config)
 
     Constant = { fg = c.purple }, -- (preferred) any constant
     String = { fg = c.green }, --   a string constant: "this is a string"
-    Character = { fg = c.purple2 }, --  a character constant: 'c', '\n'
+    Character = { fg = c.purple }, --  a character constant: 'c', '\n'
     Number        = { fg = c.lpurple }, --   a number constant: 234, 0xff
     Boolean       = { fg = c.purple, style = "bold"}, --  a boolean constant: TRUE, false
     Float         = {  fg = c.dpurple}, --    a floating point constant: 2.3e10
@@ -142,29 +126,29 @@ function M.setup(config)
 
 
     Statement = { fg = c.yellow }, -- (preferred) any statement
-    -- Conditional   = { }, --  if, then, else, endif, switch, etc.
+    Conditional   = {  fg = c.yellow, style = "italic" }, --  if, then, else, endif, switch, etc.
     Repeat        = { fg = c.orange, style = "italic" }, --   for, do, while, etc.
-    -- Label         = { }, --    case, default, etc.
-    Operator = { fg = C.operator, }, -- "sizeof", "+", "*", etc.
+    Label         = { fg = c.dyellow, style = "italic" }, --    case, default, etc.
+    Operator = { fg = c.red, }, -- "sizeof", "+", "*", etc.
     Keyword = { fg = c.purple}, -- style = config.keywordStyle }, --  any other keyword
-    -- Exception     = { }, --  try, catch, throw
+    Exception     = { fg=c.red, style = "bold" }, --  try, catch, throw
 
     PreProc = { fg = c.llyellow , style = "italic"}, -- (preferred) generic Preprocessor
     Include       = { fg = c.llyellow, style = "italic" }, --  preprocessor #include
     Define        = { fg = c.lcyan, style = "bold" }, --   preprocessor #define
     Macro         = { fg = c.lblue, style = "bold"}, --    same as Define
-    -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
+    PreCondit     = { fg = c.llcyan, style = "bold"}, --  preprocessor #if, #else, #endif, etc.
 
     Type      = { fg = c.orange }, -- (preferred) int, long, char, etc.
-    -- StorageClass  = { }, -- static, register, volatile, etc.
+    StorageClass  = { fg = c.dorange, style = "italic" }, -- static, register, volatile, etc.
     Structure = { fg = c.yellow , style = "bold"}, --  struct, union, enum, etc.
     Typedef       = { fg = c.red }, --  A typedef
 
-    Special     = { fg = c.yellow1 }, -- (preferred) any special symbol
-    SpecialChar = { fg = c.red1, style = "italic" }, --  special character in a constant
-    Tag         = { fg = c.blue2 }, --    you can use CTRL-] on this
-    Delimiter     = {fg=c.red1 }, --  character that needs attention
-    SpecialComment= { fg=c.yellow2, style="italic"}, -- special things inside a comment
+    Special     = { fg = c.llyellow }, -- (preferred) any special symbol
+    SpecialChar = { fg = c.llyellow, style = "italic" }, --  special character in a constant
+    Tag         = { fg = c.lblue }, --    you can use CTRL-] on this
+    Delimiter     = {fg=c.red }, --  character that needs attention
+    SpecialComment= { fg=c.lyellow, style="italic"}, -- special things inside a comment
     -- Debug         = { }, --    debugging statements
 
     Underlined = { style = "underline" }, -- (preferred) text that stands out, HTML links
@@ -174,7 +158,7 @@ function M.setup(config)
     -- ("Ignore", below, may be invisible...)
     -- Ignore = { }, -- (preferred) left blank, hidden  |hl-Ignore|
 
-    Error = { fg = c.red1 , style="bold"}, -- (preferred) any erroneous construct
+    Error = { fg = c.dred , style="bold"}, -- (preferred) any erroneous construct
     Todo = { bg = c.none, fg = c.yellow , style="bold"}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Note = { bg = c.none, fg=c.yellow,style="bold"},
 
@@ -191,13 +175,13 @@ function M.setup(config)
     htmlH6 = { fg = c.yellow, style = "bold"},
 
     mkdHeading = { fg = c.orange, style = "bold" },
-    mkdCode = { bg = c.terminal_black, fg = c.fg },
-    mkdCodeDelimiter = { bg = c.terminal_black, fg = c.fg },
+    mkdCode = { bg = c.bg_darker, fg = c.fg },
+    mkdCodeDelimiter = { bg = c.bg_dark, fg = c.fg },
     mkdCodeStart = { fg = c.teal, style = "bold" },
     mkdCodeEnd = { fg = c.teal, style = "bold" },
     mkdLink = { fg = c.blue, style = "underline" },
 
-    jsonTSLabel = { fg = c.orange2 },
+    jsonTSLabel = { fg = c.dorange },
 
     markdownHeadingDelimiter = { fg = c.orange, style = "bold" },
     markdownCode = { fg = c.teal },
@@ -210,9 +194,9 @@ function M.setup(config)
     markdownH6 = { fg = c.yellow, style = "bold"},
     markdownLinkText = { fg = c.blue, style = "underline" },
 
-    tsxTSConstructor = { fg = c.orange2, style = "bold,italic"},
+    tsxTSConstructor = { fg = c.ddorange, style = "bold,italic"},
     tsxTSTagAttribute = { fg = c.dpurple, style = "italic"},
-    typescriptTSConstructor = { fg = c.orange1, style = "bold"},
+    typescriptTSConstructor = { fg = c.orange, style = "bold"},
     yamlTSField = { fg = c.cyan2 },
     -- NvimLambda = { fg = c.magenta, style = "bold" },
     -- NvimCurly = { fg = C.operator},-- style = "bold" },
@@ -235,10 +219,10 @@ function M.setup(config)
     DiagnosticInfo = { fg = c.info }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
     DiagnosticHint = { fg = c.hint }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-    DiagnosticVirtualTextError = { bg = c.dred,  fg = c.error }, -- Used for "Error" diagnostic virtual text
-    DiagnosticVirtualTextWarn = { bg = c.dorange,  fg = c.warning }, -- Used for "Warning" diagnostic virtual text
-    DiagnosticVirtualTextInfo = { bg = c.dteal,  fg = c.info }, -- Used for "Information" diagnostic virtual text
-    DiagnosticVirtualTextHint = { bg = c.dblue,  fg = c.hint }, -- Used for "Hint" diagnostic virtual text
+    DiagnosticVirtualTextError = { bg = c.bg_sel,  fg = c.error }, -- Used for "Error" diagnostic virtual text
+    DiagnosticVirtualTextWarn = { bg = c.bg_sel,  fg = c.warning }, -- Used for "Warning" diagnostic virtual text
+    DiagnosticVirtualTextInfo = { bg = c.bg_sel,  fg = c.info }, -- Used for "Information" diagnostic virtual text
+    DiagnosticVirtualTextHint = { bg = c.bg_sel,  fg = c.hint }, -- Used for "Hint" diagnostic virtual text
 
     DiagnosticUnderlineError = { style = "undercurl", sp = c.error }, -- Used to underline "Error" diagnostics
     DiagnosticUnderlineWarn = { style = "undercurl", sp = c.warning }, -- Used to underline "Warning" diagnostics
@@ -288,16 +272,16 @@ function M.setup(config)
     TSWarning         = { fg = c.warning , style = "bold"},
     TSDanger          = { fg = c.error , style = 'bold'},
     TSConstructor     = { fg = c.lyellow },
-    TSConditional       = { fg=c.red2, style = "italic"};
-    TSConstant          = { fg=c.purple2};
-    TSConstBuiltin      = { fg=c.magenta1, style = "italic"};
-    TSConstMacro        = { fg=c.blue2, style="italic,bold" };
+    TSConditional       = { fg=c.llred, style = "italic"};
+    TSConstant          = { fg=c.llpurple};
+    TSConstBuiltin      = { fg=c.lmagenta, style = "italic"};
+    TSConstMacro        = { fg=c.blue, style="italic,bold" };
     TSDebug           = { fg = c.lcyan };
-    TSError           = { fg = c.red2 };
-    TSException         = {fg=c.red1 };
+    TSError           = { fg = c.dred };
+    TSException         = {fg=c.red };
     TSField           = { fg = c.lblue };
-    TSFloat           = { fg = c.purple2 };
-    TSFuncBuiltin     = { fg = c.yellow2, style = "bold,italic" };
+    TSFloat           = { fg = c.purple };
+    TSFuncBuiltin     = { fg = c.dyellow, style = "bold,italic" };
     TSFunction        = { fg = c.yellow, style = "italic" };
     TSFuncMacro       = { fg = c.lyellow, style = "bold"},-- style = "" };
     TSInclude         = { fg = c.yellow, style = "italic" };
@@ -310,41 +294,41 @@ function M.setup(config)
     TSEnvironmentName = { fg = c.teal, style = "italic" },
     TSMath            = { fg = c.lmagenta },
 
-    TSMethod            = { fg=c.orange2, style="italic"},
-    TSNamespace         = { fg = c.purple1},
+    TSMethod            = { fg=c.llorange, style="italic"},
+    TSNamespace         = { fg = c.lpurple},
     -- TSNone              = { };    2-- TODO: docs
     TSNumber            = { fg=c.purple}; 
-    TSOperator        = { fg = c.red1 },
+    TSOperator        = { fg = c.lred },
     TSParameter       = { fg = c.dorange }, -- For parameters of a function.
     TSParameterReference= { fg=c.dorange, style="italic"};    -- For references to parameters of a function.
-    TSProperty        = { fg = c.blue3 , style="italic"}, -- Same as `TSField`.
-    TSPunctDelimiter  = { fg = c.red1 },
-    TSPunctBracket    = { fg = c.red2, },
-    TSPunctSpecial    = { fg = c.orange3 },
+    TSProperty        = { fg = c.lllblue , style="italic"}, -- Same as `TSField`.
+    TSPunctDelimiter  = { fg = c.red },
+    TSPunctBracket    = { fg = c.dred, },
+    TSPunctSpecial    = { fg = c.ddorange },
     TSRepeat            = { fg=c.orange, style="italic"};    -- For keywords related to loops.
-    TSString          = { fg = c.green1, style = "italic" }; -- For strings.
-    cTSString         =  { fg = c.green1, style = "italic" }; -- For strings.
+    TSString          = { fg = c.lgreen, style = "italic" }; -- For strings.
+    cTSString         =  { fg = c.lgreen, style = "italic" }; -- For strings.
     cTSStringEscape   =  { fg = c.yellow, style = "italic"},
     cppRawString      = { fg = c.yellow, style = "italic"},
-    TSStringRegex     = { fg = c.teal1 }, -- For regexes.
-    TSStringEscape    = { fg = c.orange1 }, -- For escape characters within a string.
-    TSStringSpecial   = { fg = c.yellow1, style = 'italic'};
-    TSSymbol          = { fg = c.cyan2, style = "bold,italic" }; -- For identifiers referring to symbols or atoms.
+    TSStringRegex     = { fg = c.teal }, -- For regexes.
+    TSStringEscape    = { fg = c.orange }, -- For escape characters within a string.
+    TSStringSpecial   = { fg = c.yellow, style = 'italic'};
+    TSSymbol          = { fg = c.llcyan, style = "bold,italic" }; -- For identifiers referring to symbols or atoms.
     TSPreProc = { fg = c.llyellow, style = "italic"};
     TSDefine = { fg = c.dorange, style = "bold"};
 
-    TSStorageClass = { fg = c.cyan2 };
+    TSStorageClass = { fg = c.llcyan };
 
-    TSType            = { fg = c.blue2,};
+    TSType            = { fg = c.llblue,};
     TSTypeBuiltin     = { fg = c.cyan,style="italic" };
-    TSTypeQualifier   = { fg = c.purple2, style = "italic" };
-    TSTypeDefinition  = { fg = c.blue1, style = "bold"};
+    TSTypeQualifier   = { fg = c.llpurple, style = "italic" };
+    TSTypeDefinition  = { fg = c.lblue, style = "bold"};
 
     TSVariable        = { fg = c.cyan }; --, style = "italic"};
     TSVariableBuiltin = { fg = c.teal , style = "italic"}, -- Variable names that are defined by the languages, like `this` or `self`.
      
 
-    TSTag           = { fg = c.cyan2 }; -- Tags like html tag names.
+    TSTag           = { fg = c.llcyan }; -- Tags like html tag names.
     TSTagAttribute  = { fg = c.teal, style = "italic" }; -- Tags like html tag names.
     TSTagDelimiter  = { fg = c.red }; -- Tag delimiter like `<` `>` `/`
     TSText              = {  fg = c.fg },
@@ -543,21 +527,21 @@ function M.setup(config)
 
     TelescopePromptNormal = { fg = c.fg, bg = c.black },
     TelescopePromptPrefix = { fg = c.magenta, bg = c.black },
-    TelescopeSelectionCaret = { fg = c.magenta2 },
+    TelescopeSelectionCaret = { fg = c.lmagenta },
     TelescopePromptCounter = { fg = c.gray },
     TelescopePromptBorder = { fg = c.border_highlight },
     TelescopeSelection = { fg = c.white1, bg = c.bg_sel, style = "bold" },
-    TelescopeMatching = { fg = c.yellow1 },
-    TelescopePreviewTitle = { fg = c.yellow1, bg = c.bg },
-    TelescopeResultsTitle = { fg = c.bg, red1 = c.bg },
-    TelescopePromptTitle = { fg = c.orange1, bg = c.bg },
+    TelescopeMatching = { fg = c.lyellow },
+    TelescopePreviewTitle = { fg = c.lyellow, bg = c.bg },
+    TelescopeResultsTitle = { fg = c.lpurple, bg = c.bg },
+    TelescopePromptTitle = { fg = c.lorange, bg = c.bg },
 
     -- NvimTree
     NvimTreeNormal = { fg = c.fg_gray, bg = c.darkest },
     NvimTreeSignColumn = { fg = c.gray, bg=c.black},
     NvimTreeWindowPicker = { bg=c.bg_sel},
-    NvimTreeOpenedFolderName = { fg = c.green2, style="bold", },
-    NvimTreeFolderIcon = { fg = c.orange2, style="bold", },
+    NvimTreeOpenedFolderName = { fg = c.lgreen, style="bold", },
+    -- NvimTreeFolderIcon = { fg = c.orange2, style="bold", },
     NvimTreeEmptyFolderName = { fg = c.yellow, style="italic"},
     NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.darkest },
     NvimTreeRootFolder = { fg = c.green, style = "bold" },
@@ -567,10 +551,12 @@ function M.setup(config)
     NvimTreeSpecialFile = { fg = c.purple, style = "italic" },
     NvimTreeIndentMarker = { fg = c.gray },
     NvimTreeImageFile = { fg = c.fg_sidebar },
-    NvimTreeSymlink = { fg = c.blue1 , style = "italic"},
+    NvimTreeSymlink = { fg = c.lblue , style = "italic"},
     NvimTreeVertSplit = { fg = c.comment },
     NvimTreeCursorLine = { bg = c.bg_hi},
     NvimTreeFolderName = { fg = c.yellow},--, style = "bold" },
+    NvimTreeFolderIcon = { fg = c.orange, style = "bold"},
+    NvimTreeFileIcon = { fg = c.blue, style = "bold"},
     -- NvimTreeFolderName = { fg = c.purple},--, style = "bold" },
 
     -- Fern

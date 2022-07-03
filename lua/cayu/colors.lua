@@ -140,7 +140,7 @@ function M.setup(config)
     dteal    = "#60c09f",
     ddteal    = "#5ab08a",
 
-    lgreen   = "#daffaa",
+    lgreen   = "#c0ff90",
     green   = "#d5ff80",
     dgreen   = "#c0fa70",
     ddgreen   = "#aff060",
