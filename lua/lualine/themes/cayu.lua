@@ -6,48 +6,56 @@ local cayu = {}
 
 cayu.normal = {
   a = { bg = colors.green, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.dgreen },
-  c = { bg = colors.bg_statusline, fg = colors.gray },
-  x = { bg = colors.bg_statusline, fg = colors.gray },
-  y = { bg = colors.fg_gutter, fg = colors.dgreen },
+  b = { bg = colors.bg_sel, fg = colors.dgreen },
+  c = { bg = colors.bg_darker, fg = colors.gray11 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_sel, fg = colors.green },
   z = { bg = colors.green, fg = colors.black },
 }
 
 cayu.insert = {
-  a = { bg = colors.purple, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.purple },
-  y = { bg = colors.fg_gutter, fg = colors.purple },
-  z = { bg = colors.purple, fg = colors.black },
+  a = { bg = colors.dpurple, fg = colors.black },
+  b = { bg = colors.bg_sel, fg = colors.dpurple },
+  c = { bg = colors.bg_darker, fg = colors.gray11 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_sel, fg = colors.dpurple },
+  z = { bg = colors.dpurple, fg = colors.black },
 }
 
 cayu.command = {
   a = { bg = colors.red, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.red },
-  y = { bg = colors.fg_gutter, fg = colors.red },
+  b = { bg = colors.bg_sel, fg = colors.red },
+  c = { bg = colors.bg_darker, fg = colors.gray11 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_sel, fg = colors.red },
   z = { bg = colors.red, fg = colors.black },
 }
 
 cayu.visual = {
-  a = { bg = colors.yellow, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.yellow },
-  y = { bg = colors.fg_gutter, fg = colors.yellow },
-  z = { bg = colors.yellow, fg = colors.black },
+  a = { bg = colors.dyellow, fg = colors.black },
+  b = { bg = colors.bg_sel, fg = colors.dyellow },
+  c = { bg = colors.bg_darker, fg = colors.gray11 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_sel, fg = colors.dyellow },
+  z = { bg = colors.dyellow, fg = colors.black },
 }
 
 cayu.replace = {
-  a = { bg = colors.blue, fg = colors.black },
-  b = { bg = colors.fg_gutter, fg = colors.blue },
-  y = { bg = colors.fg_gutter, fg = colors.blue },
-  z = { bg = colors.blue, fg = colors.black },
+  a = { bg = colors.dblue, fg = colors.black },
+  b = { bg = colors.bg_sel, fg = colors.dblue },
+  c = { bg = colors.bg_darker, fg = colors.gray11 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_sel, fg = colors.dblue },
+  z = { bg = colors.dblue, fg = colors.black },
 }
 
 cayu.inactive = {
-  a = { bg = colors.bg_statusline, fg = colors.green },
-  b = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
-  c = { bg = colors.bg_statusline, fg = colors.gray },
-  x = { bg = colors.bg_statusline, fg = colors.gray },
-  y = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
-  z = { bg = colors.bg_statusline, fg = colors.green },
+  a = { bg = colors.bg_darker, fg = colors.green },
+  b = { bg = colors.bg_darker, fg = colors.bg_sel, gui = "bold" },
+  c = { bg = colors.bg_darker, fg = colors.gray1 },
+  x = { bg = colors.bg_darker, fg = colors.gray1 },
+  y = { bg = colors.bg_darker, fg = colors.bg_sel, gui = "bold" },
+  z = { bg = colors.bg_darker, fg = colors.green },
 }
 
 if vim.o.background == "light" then
